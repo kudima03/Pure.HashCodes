@@ -96,7 +96,7 @@ public sealed record HashFromTimeTests
         byte[] millisecondsBytes = BitConverter.GetBytes((ushort)time.Millisecond);
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
 
-        byte[] concatenated = 
+        byte[] concatenated =
             hourBytes.Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
