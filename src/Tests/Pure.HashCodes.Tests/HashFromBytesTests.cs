@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Security.Cryptography;
 
 namespace Pure.HashCodes.Tests;
@@ -13,7 +13,7 @@ public sealed record HashFromBytesTests
 
         byte[] expectedHash = SHA256.HashData(bytes);
 
-        IEnumerable<byte> actualHash = new HashFromBytes(bytes);
+        IEnumerable actualHash = new HashFromBytes(bytes);
 
         bool notEqual = false;
         int index = 0;
