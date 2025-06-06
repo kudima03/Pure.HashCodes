@@ -5,7 +5,7 @@ namespace Pure.HashCodes;
 
 public sealed record HashFromBool : IDeterminedHash
 {
-    private static readonly byte[] typePrefix =
+    private static readonly byte[] TypePrefix =
         [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
 
     private readonly IBool _value;
@@ -17,7 +17,7 @@ public sealed record HashFromBool : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(typePrefix.Concat(BitConverter.GetBytes(_value.BoolValue))).GetEnumerator();
+        return new HashFromBytes(TypePrefix.Concat(BitConverter.GetBytes(_value.BoolValue))).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
