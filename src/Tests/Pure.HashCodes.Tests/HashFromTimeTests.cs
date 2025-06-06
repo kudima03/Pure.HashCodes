@@ -9,7 +9,8 @@ public sealed record HashFromTimeTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        const byte typeCode = 3;
+        byte[] typePrefix =
+            [2, 69, 151, 1, 242, 64, 126, 119, 167, 82, 211, 125, 202, 137, 42, 33];
 
         TimeOnly time = TimeOnly.FromDateTime(DateTime.Now);
 
@@ -19,11 +20,11 @@ public sealed record HashFromTimeTests
         byte[] millisecondsBytes = BitConverter.GetBytes((ushort)time.Millisecond);
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
 
-        byte[] concatenated = hourBytes.Concat(minutesBytes)
+        byte[] concatenated = typePrefix.Concat(hourBytes)
+            .Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
             .Concat(microsecondsBytes)
-            .Prepend(typeCode)
             .ToArray();
 
         byte[] expectedHash = SHA256.HashData(concatenated);
@@ -48,7 +49,8 @@ public sealed record HashFromTimeTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        const byte typeCode = 3;
+        byte[] typePrefix =
+            [2, 69, 151, 1, 242, 64, 126, 119, 167, 82, 211, 125, 202, 137, 42, 33];
 
         TimeOnly time = TimeOnly.FromDateTime(DateTime.Now);
 
@@ -58,11 +60,12 @@ public sealed record HashFromTimeTests
         byte[] millisecondsBytes = BitConverter.GetBytes((ushort)time.Millisecond);
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
 
-        byte[] concatenated = hourBytes.Concat(minutesBytes)
+        byte[] concatenated = typePrefix
+            .Concat(hourBytes)
+            .Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
             .Concat(microsecondsBytes)
-            .Prepend(typeCode)
             .ToArray();
 
         byte[] expectedHash = SHA256.HashData(concatenated);
@@ -86,7 +89,8 @@ public sealed record HashFromTimeTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        const byte typeCode = 3;
+        byte[] typePrefix =
+            [2, 69, 151, 1, 242, 64, 126, 119, 167, 82, 211, 125, 202, 137, 42, 33];
 
         TimeOnly time = TimeOnly.FromDateTime(DateTime.Now);
 
@@ -97,11 +101,11 @@ public sealed record HashFromTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
 
         byte[] concatenated =
-            hourBytes.Concat(minutesBytes)
+            typePrefix.Concat(hourBytes)
+            .Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
             .Concat(microsecondsBytes)
-            .Prepend(typeCode)
             .ToArray();
 
         Assert.Equal(SHA256.HashData(concatenated), new HashFromTime(new Time(time)));
