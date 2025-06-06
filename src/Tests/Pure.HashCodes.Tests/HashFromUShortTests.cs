@@ -69,7 +69,7 @@ public sealed record HashFromUShortTests
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(123));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
-        
+
         Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromUShort(new UShort(123)));
     }
 
