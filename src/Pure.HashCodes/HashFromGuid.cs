@@ -5,7 +5,8 @@ namespace Pure.HashCodes;
 
 public sealed record HashFromGuid : IDeterminedHash
 {
-    private const byte typePrefix = 4;
+    private static readonly byte[] typePrefix =
+        [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
 
     private readonly IGuid _value;
 
@@ -16,7 +17,7 @@ public sealed record HashFromGuid : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(_value.GuidValue.ToByteArray().Prepend(typePrefix)).GetEnumerator();
+        return new HashFromBytes(typePrefix.Concat(_value.GuidValue.ToByteArray())).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
