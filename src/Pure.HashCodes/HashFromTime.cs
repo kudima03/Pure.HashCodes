@@ -5,7 +5,8 @@ namespace Pure.HashCodes;
 
 public sealed record HashFromTime : IDeterminedHash
 {
-    private const byte typePrefix = 3;
+    private static readonly byte[] typePrefix =
+        [2, 69, 151, 1, 242, 64, 126, 119, 167, 82, 211, 125, 202, 137, 42, 33];
 
     private readonly ITime _value;
 
@@ -22,11 +23,10 @@ public sealed record HashFromTime : IDeterminedHash
         byte[] millisecondsBytes = BitConverter.GetBytes(_value.Millisecond.NumberValue);
         byte[] microsecondsBytes = BitConverter.GetBytes(_value.Microsecond.NumberValue);
 
-        IEnumerable<byte> concatenated = hourBytes.Concat(minutesBytes)
+        IEnumerable<byte> concatenated = typePrefix.Concat(hourBytes).Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Prepend(typePrefix);
+            .Concat(microsecondsBytes);
 
         return new HashFromBytes(concatenated).GetEnumerator();
     }

@@ -9,11 +9,13 @@ public sealed record HashFromGuidTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        const byte typeCode = 4;
+        byte[] typePrefix =
+            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
+
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -37,12 +39,13 @@ public sealed record HashFromGuidTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        const byte typeCode = 4;
+        byte[] typePrefix =
+            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
 
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -65,12 +68,13 @@ public sealed record HashFromGuidTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        const byte typeCode = 4;
+        byte[] typePrefix =
+            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
 
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromGuid(new Guid(guid)));
     }

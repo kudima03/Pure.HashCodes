@@ -10,10 +10,11 @@ public sealed record HashFromStringTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        const byte typeCode = 2;
+        byte[] typePrefix =
+            [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -37,10 +38,11 @@ public sealed record HashFromStringTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        const byte typeCode = 2;
+        byte[] typePrefix =
+            [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -63,10 +65,11 @@ public sealed record HashFromStringTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        const byte typeCode = 2;
+        byte[] typePrefix =
+            [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromString(new String("Hello, world!!!")));
     }

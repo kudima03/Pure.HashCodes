@@ -9,10 +9,11 @@ public sealed record HashFromBoolTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        const byte typeCode = 0;
+        byte[] typePrefix =
+            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -36,10 +37,11 @@ public sealed record HashFromBoolTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        const byte typeCode = 0;
+        byte[] typePrefix =
+            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -62,10 +64,11 @@ public sealed record HashFromBoolTests
     [Fact]
     public void ProduceDeterminedCodeOnTrue()
     {
-        const byte typeCode = 0;
+        byte[] typePrefix =
+            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromBool(new True()));
     }
@@ -73,10 +76,11 @@ public sealed record HashFromBoolTests
     [Fact]
     public void ProduceDeterminedCodeOnFalse()
     {
-        const byte typeCode = 0;
+        byte[] typePrefix =
+            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
 
         byte[] valueBytes = BitConverter.GetBytes(false);
-        byte[] valueBytesWithTypeCode = valueBytes.Prepend(typeCode).ToArray();
+        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
         Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromBool(new False()));
     }
