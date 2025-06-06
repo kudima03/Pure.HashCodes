@@ -22,11 +22,15 @@ public sealed record HashFromTime : IDeterminedHash
         byte[] secondBytes = BitConverter.GetBytes(_value.Second.NumberValue);
         byte[] millisecondsBytes = BitConverter.GetBytes(_value.Millisecond.NumberValue);
         byte[] microsecondsBytes = BitConverter.GetBytes(_value.Microsecond.NumberValue);
+        byte[] nanosecondsBytes = BitConverter.GetBytes(_value.Nanosecond.NumberValue);
 
-        IEnumerable<byte> concatenated = typePrefix.Concat(hourBytes).Concat(minutesBytes)
+        IEnumerable<byte> concatenated = typePrefix
+            .Concat(hourBytes)
+            .Concat(minutesBytes)
             .Concat(secondBytes)
             .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes);
+            .Concat(microsecondsBytes)
+            .Concat(nanosecondsBytes);
 
         return new HashFromBytes(concatenated).GetEnumerator();
     }
