@@ -22,15 +22,15 @@ public sealed record OrderedHashTests
             new DeterminedHash(new RandomDateTime())
         ];
 
-        IEnumerable actualHash = new OrderedHashes(hashCollection).SelectMany(x => x);
-        byte[] actualUntypedHash = new OrderedHashes(hashCollection).SelectMany(x => x).ToArray();
+        IEnumerable actualHash = new OrderedHashes(hashCollection);
+        IDeterminedHash[] actualTypedHash = new OrderedHashes(hashCollection).ToArray();
 
         int index = 0;
         bool equal = true;
 
         foreach (object element in actualHash)
         {
-            if ((byte)element != actualUntypedHash[index++])
+            if (!((IDeterminedHash)element).SequenceEqual(actualTypedHash[index++]))
             {
                 equal = false;
                 break;
