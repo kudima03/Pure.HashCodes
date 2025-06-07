@@ -47,6 +47,18 @@ public sealed record DeterminedHashTests
     }
 
     [Fact]
+    public void ProduceCorrectAggregatedHash()
+    {
+        IReadOnlyCollection<IDeterminedHash> values =
+            [new DeterminedHash(new True()), new DeterminedHash(new UShort(100)), new DeterminedHash(new MaxUshort())];
+
+        Assert.Equal(
+            new AggregatedHash(values),
+            new DeterminedHash(values),
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+    }
+
+    [Fact]
     public void ProduceCorrectBoolHash()
     {
         IReadOnlyCollection<IBool> values = [new True(), new False()];
