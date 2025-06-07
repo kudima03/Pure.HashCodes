@@ -55,4 +55,14 @@ public sealed record DeterminedHash : IDeterminedHash
     {
         return GetEnumerator();
     }
+
+    public override int GetHashCode()
+    {
+        throw new NotSupportedException();
+    }
+
+    public override string ToString()
+    {
+        throw new NotSupportedException();
+    }
 }
