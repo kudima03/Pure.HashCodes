@@ -122,14 +122,14 @@ public sealed record DeterminedHashTests
     [Fact]
     public void ProduceCorrectGuidHash()
     {
-        IEnumerable<IGuid> values = Enumerable.Range(0, 1000).Select(_=> new Pure.Primitives.Guid.Guid()).ToArray();
+        IEnumerable<IGuid> values = Enumerable.Range(0, 1000).Select(_ => new Pure.Primitives.Guid.Guid()).ToArray();
 
         Assert.Equal(
             values.Select(x => new HashFromGuid(x)),
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
     }
-    
+
     [Fact]
     public void ProduceCorrectIntHash()
     {
@@ -140,7 +140,7 @@ public sealed record DeterminedHashTests
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
     }
-    
+
     [Fact]
     public void ProduceCorrectStringHash()
     {
@@ -151,7 +151,7 @@ public sealed record DeterminedHashTests
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
     }
-    
+
     [Fact]
     public void ProduceCorrectTimeHash()
     {
@@ -162,7 +162,7 @@ public sealed record DeterminedHashTests
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
     }
-    
+
     [Fact]
     public void ProduceCorrectUIntHash()
     {
@@ -173,7 +173,7 @@ public sealed record DeterminedHashTests
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
     }
-    
+
     [Fact]
     public void ProduceCorrectUShortHash()
     {
