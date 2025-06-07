@@ -19,11 +19,34 @@ using Pure.Primitives.Random.Number;
 using Pure.Primitives.Random.String;
 using Pure.Primitives.Random.Time;
 using System.Collections;
+using System.Text;
+using Char = Pure.Primitives.Char.Char;
+using Double = Pure.Primitives.Number.Double;
+using String = Pure.Primitives.String.String;
 
 namespace Pure.HashCodes.Tests;
 
 public sealed record DeterminedHashTests
 {
+    [Fact]
+    public void ProduceDifferentHashesAcrossTypes()
+    {
+        byte[] bytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        
+        IReadOnlyCollection<IDeterminedHash> hashes = [
+        
+            new DeterminedHash(new True()),
+            new DeterminedHash(new Char(BitConverter.ToChar(bytes.AsSpan(0, 2)))),
+            new DeterminedHash(new Double(BitConverter.ToDouble(bytes))),
+            new DeterminedHash(new Int(BitConverter.ToInt32(bytes))),
+            new DeterminedHash(new UInt(BitConverter.ToUInt32(bytes))),
+            new DeterminedHash(new UShort(BitConverter.ToUInt16(bytes.AsSpan(0, 2)))),
+            new DeterminedHash(new String(Encoding.Default.GetString(bytes))),
+        ];
+
+        Assert.Equal(hashes.Count, hashes.Select(x => Convert.ToHexString(x.ToArray())).Distinct().Count());
+    }
+
     [Fact]
     public void EnumeratesAsUntyped()
     {
