@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace Pure.HashCodes;
 
-public sealed record HashFromBytes : IDeterminedHash
+internal sealed record HashFromBytes : IDeterminedHash
 {
     private readonly IEnumerable<byte> _bytes;
 

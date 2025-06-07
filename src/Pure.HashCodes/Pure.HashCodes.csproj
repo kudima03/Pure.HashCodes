@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.1" />
   </ItemGroup>
 
