@@ -41,6 +41,8 @@ public sealed record DeterminedHash : IDeterminedHash
 
     public DeterminedHash(IString value) : this(new HashFromString(value)) { }
 
+    public DeterminedHash(IEnumerable<IDeterminedHash> hashes) : this(new AggregatedHash(hashes)) { }
+
     private DeterminedHash(IEnumerable<byte> hashBytes)
     {
         _hashBytes = hashBytes;
