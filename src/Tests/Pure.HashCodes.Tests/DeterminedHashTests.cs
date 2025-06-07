@@ -31,10 +31,10 @@ public sealed record DeterminedHashTests
     [Fact]
     public void ProduceDifferentHashesAcrossTypes()
     {
-        byte[] bytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-        
+        byte[] bytes = [1, 2, 3, 4, 5, 6, 7, 8];
+
         IReadOnlyCollection<IDeterminedHash> hashes = [
-        
+
             new DeterminedHash(new True()),
             new DeterminedHash(new Char(BitConverter.ToChar(bytes.AsSpan(0, 2)))),
             new DeterminedHash(new Double(BitConverter.ToDouble(bytes))),
