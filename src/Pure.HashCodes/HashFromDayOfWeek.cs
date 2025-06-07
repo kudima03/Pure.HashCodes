@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Pure.HashCodes;
 
-public sealed record HashFromDayOfWeek : IDeterminedHash
+internal sealed record HashFromDayOfWeek : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
         [104, 69, 151, 1, 244, 155, 254, 117, 160, 204, 149, 170, 27, 220, 11, 55];

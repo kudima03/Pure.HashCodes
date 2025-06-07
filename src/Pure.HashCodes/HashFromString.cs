@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pure.HashCodes;
 
-public sealed record HashFromString : IDeterminedHash
+internal sealed record HashFromString : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
         [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];

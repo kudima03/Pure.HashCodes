@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Pure.HashCodes;
 
-public sealed record HashFromUShort : IDeterminedHash
+internal sealed record HashFromUShort : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
         [75, 69, 151, 1, 198, 16, 204, 119, 135, 66, 52, 31, 39, 64, 88, 38];
