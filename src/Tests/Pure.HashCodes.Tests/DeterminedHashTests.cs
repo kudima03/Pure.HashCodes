@@ -25,18 +25,22 @@ public sealed record DeterminedHashTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        IEnumerator determinedHash = new DeterminedHash(new True()).GetEnumerator();
+        IEnumerable determinedHash = new DeterminedHash(new True());
         IEnumerator boolHash = new HashFromBool(new True()).GetEnumerator();
 
         bool equal = true;
 
-        while (determinedHash.MoveNext() && boolHash.MoveNext())
+        boolHash.MoveNext();
+
+        foreach (object item in determinedHash)
         {
-            if (!determinedHash.Current!.Equals(boolHash.Current))
+            if (!item!.Equals(boolHash.Current))
             {
                 equal = false;
                 break;
             }
+
+            boolHash.MoveNext();
         }
 
         Assert.True(equal);
