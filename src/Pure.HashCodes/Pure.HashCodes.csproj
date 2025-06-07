@@ -6,6 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Pure.HashCodes</PackageId>
+    <RootNamespace>Pure.HashCodes</RootNamespace>
+    <AssemblyName>Pure.HashCodes</AssemblyName>
+    <Authors>Dmitry Kurochkin</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/kudima03/Pure.HashCodes</PackageProjectUrl>
+  </PropertyGroup>
+
   <ItemGroup>
     <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
   </ItemGroup>
