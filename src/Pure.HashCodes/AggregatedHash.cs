@@ -2,7 +2,7 @@
 
 namespace Pure.HashCodes;
 
-internal sealed record AggregatedHash : IDeterminedHash
+public sealed record AggregatedHash : IDeterminedHash
 {
     private readonly IEnumerable<IDeterminedHash> _hashes;
 
