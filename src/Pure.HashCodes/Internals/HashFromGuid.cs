@@ -1,7 +1,7 @@
 ﻿using Pure.Primitives.Abstractions.Guid;
 using System.Collections;
 
-namespace Pure.HashCodes.Internals;
+namespace Pure.HashCodes;
 
 internal sealed record HashFromGuid : IDeterminedHash
 {

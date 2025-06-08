@@ -1,5 +1,4 @@
-﻿using Pure.HashCodes.Internals;
-using Pure.Primitives.Bool;
+﻿using Pure.Primitives.Bool;
 using System.Collections;
 using System.Security.Cryptography;
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Pure.HashCodes.Internals.AggregatedHash;
+namespace Pure.HashCodes;
 
 internal sealed class DeterminedHashComparer : IComparer<IDeterminedHash>
 {

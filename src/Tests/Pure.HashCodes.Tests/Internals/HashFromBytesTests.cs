@@ -1,5 +1,4 @@
-﻿using Pure.HashCodes.Internals;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
 
 namespace Pure.HashCodes.Tests.Internals;

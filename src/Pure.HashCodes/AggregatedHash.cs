@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Pure.HashCodes.Internals.AggregatedHash;
+namespace Pure.HashCodes;
 
 internal sealed record AggregatedHash : IDeterminedHash
 {
