@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Text;
 
-namespace Pure.HashCodes.Internals;
+namespace Pure.HashCodes;
 
 internal sealed record HashFromString : IDeterminedHash
 {

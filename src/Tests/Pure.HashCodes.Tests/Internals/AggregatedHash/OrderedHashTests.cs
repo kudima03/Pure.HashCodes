@@ -1,5 +1,4 @@
-﻿using Pure.HashCodes.Internals.AggregatedHash;
-using Pure.Primitives.Random.Bool;
+﻿using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;
 using Pure.Primitives.Random.Number;

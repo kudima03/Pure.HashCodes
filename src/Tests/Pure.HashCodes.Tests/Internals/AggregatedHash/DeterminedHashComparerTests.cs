@@ -1,5 +1,4 @@
-﻿using Pure.HashCodes.Internals.AggregatedHash;
-using Pure.HashCodes.Tests.Fakes;
+﻿using Pure.HashCodes.Tests.Fakes;
 
 namespace Pure.HashCodes.Tests.Internals.AggregatedHash;
 

@@ -7,8 +7,6 @@ using System.Collections;
 
 namespace Pure.HashCodes.Tests.Internals.AggregatedHash;
 
-using AggregatedHash = HashCodes.Internals.AggregatedHash.AggregatedHash;
-
 public sealed record AggregatedHashTests
 {
     [Fact]
@@ -24,8 +22,8 @@ public sealed record AggregatedHashTests
             new DeterminedHash(new RandomDateTime())
         ];
 
-        IEnumerable actualHash = new AggregatedHash(hashCollection);
-        byte[] actualUntypedHash = new AggregatedHash(hashCollection).ToArray();
+        IEnumerable actualHash = new HashCodes.AggregatedHash(hashCollection);
+        byte[] actualUntypedHash = new HashCodes.AggregatedHash(hashCollection).ToArray();
 
         int index = 0;
         bool equal = true;
@@ -55,18 +53,18 @@ public sealed record AggregatedHashTests
             new DeterminedHash(new RandomDateTime())
         ];
 
-        Assert.True(new AggregatedHash(hashCollection).SequenceEqual(new AggregatedHash(hashCollection.Reverse())));
+        Assert.True(new HashCodes.AggregatedHash(hashCollection).SequenceEqual(new HashCodes.AggregatedHash(hashCollection.Reverse())));
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new AggregatedHash([]).GetHashCode());
+        Assert.Throws<NotSupportedException>(() => new HashCodes.AggregatedHash([]).GetHashCode());
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new AggregatedHash([]).ToString());
+        Assert.Throws<NotSupportedException>(() => new HashCodes.AggregatedHash([]).ToString());
     }
 }

@@ -1,6 +1,4 @@
-﻿using Pure.HashCodes.Internals;
-using Pure.HashCodes.Internals.AggregatedHash;
-using Pure.Primitives.Abstractions.Bool;
+﻿using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
 using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.DateTime;

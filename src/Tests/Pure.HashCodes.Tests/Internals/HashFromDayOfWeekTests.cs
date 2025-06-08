@@ -1,5 +1,4 @@
-﻿using Pure.HashCodes.Internals;
-using Pure.Primitives.DayOfWeek;
+﻿using Pure.Primitives.DayOfWeek;
 using System.Collections;
 using System.Security.Cryptography;
 

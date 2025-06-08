@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Security.Cryptography;
 
-namespace Pure.HashCodes.Internals;
+namespace Pure.HashCodes;
 
 internal sealed record HashFromBytes : IDeterminedHash
 {

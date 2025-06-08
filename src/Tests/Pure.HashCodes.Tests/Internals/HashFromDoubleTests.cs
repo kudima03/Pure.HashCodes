@@ -1,6 +1,4 @@
-﻿using Pure.HashCodes.Internals;
-using Pure.Primitives.Number;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
 using Double = Pure.Primitives.Number.Double;
 
