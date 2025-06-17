@@ -1,0 +1,12 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directories:
+    - "src/Pure.HashCodes"
+    - "src/Tests/Pure.HashCodes.Tests"
+  schedule:
+    interval: daily
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: weekly
