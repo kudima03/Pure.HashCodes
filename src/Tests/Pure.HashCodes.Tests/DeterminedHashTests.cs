@@ -82,6 +82,17 @@ public sealed record DeterminedHashTests
     }
 
     [Fact]
+    public void ProduceCorrectBytesHash()
+    {
+        IReadOnlyCollection<IEnumerable<byte>> values = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]];
+
+        Assert.Equal(
+            values.Select(x => new HashFromBytes(x)),
+            values.Select(x => new DeterminedHash(x)),
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+    }
+
+    [Fact]
     public void ProduceCorrectBoolHash()
     {
         IReadOnlyCollection<IBool> values = [new True(), new False()];
