@@ -13,7 +13,7 @@ namespace Pure.HashCodes;
 
 public sealed record DeterminedHash : IDeterminedHash
 {
-    private readonly IEnumerable<byte> _hashBytes;
+    private readonly IDeterminedHash _hash;
 
     public DeterminedHash(IBool value) : this(new HashFromBool(value)) { }
 
@@ -43,14 +43,16 @@ public sealed record DeterminedHash : IDeterminedHash
 
     public DeterminedHash(IEnumerable<IDeterminedHash> hashes) : this(new AggregatedHash(hashes)) { }
 
-    private DeterminedHash(IEnumerable<byte> hashBytes)
+    public DeterminedHash(IEnumerable<byte> hashBytes) : this(new HashFromBytes(hashBytes)) { }
+
+    private DeterminedHash(IDeterminedHash hash)
     {
-        _hashBytes = hashBytes;
+        _hash = hash;
     }
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return _hashBytes.GetEnumerator();
+        return _hash.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
