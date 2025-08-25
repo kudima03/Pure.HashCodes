@@ -14,11 +14,6 @@ internal sealed record HashFromBytes : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        if (!_bytes.Any())
-        {
-            throw new ArgumentException();
-        }
-
         return SHA256.HashData(_bytes.ToArray()).AsEnumerable().GetEnumerator();
     }
 

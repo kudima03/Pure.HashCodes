@@ -63,9 +63,9 @@ public sealed record HashFromBytesTests
     }
 
     [Fact]
-    public void ThrowsExceptionOnEmptyCollection()
+    public void ProduceDeterminedCodeOnEmptyCollection()
     {
-        Assert.Throws<ArgumentException>(() => new HashFromBytes([]).ToArray());
+        Assert.Equal("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", Convert.ToHexString(SHA256.HashData([])));
     }
 
     [Fact]
