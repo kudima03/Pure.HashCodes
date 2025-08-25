@@ -60,8 +60,8 @@ public sealed record HashFromBytesTests
         Random random = new Random();
         byte[] bytes = Enumerable.Range(0, 1000).Select(_ => (byte)random.Next(0, 255)).ToArray();
         Assert.True(SHA256.HashData(bytes).SequenceEqual(new HashFromBytes(bytes)));
-    }   
-    
+    }
+
     [Fact]
     public void ProduceDeterminedCodeOnEmptyCollection()
     {
