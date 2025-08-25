@@ -6,7 +6,24 @@ namespace Pure.HashCodes;
 internal sealed record HashFromInt : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
-        [99, 69, 151, 1, 197, 101, 86, 125, 182, 6, 168, 251, 101, 41, 230, 254];
+    [
+        99,
+        69,
+        151,
+        1,
+        197,
+        101,
+        86,
+        125,
+        182,
+        6,
+        168,
+        251,
+        101,
+        41,
+        230,
+        254,
+    ];
 
     private readonly INumber<int> _value;
 
@@ -17,7 +34,9 @@ internal sealed record HashFromInt : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(TypePrefix.Concat(BitConverter.GetBytes(_value.NumberValue))).GetEnumerator();
+        return new HashFromBytes(
+            TypePrefix.Concat(BitConverter.GetBytes(_value.NumberValue))
+        ).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

@@ -31,8 +31,8 @@ public sealed record DeterminedHashTests
     {
         byte[] bytes = [1, 2, 3, 4, 5, 6, 7, 8];
 
-        IReadOnlyCollection<IDeterminedHash> hashes = [
-
+        IReadOnlyCollection<IDeterminedHash> hashes =
+        [
             new DeterminedHash(new True()),
             new DeterminedHash(new Char(BitConverter.ToChar(bytes.AsSpan(0, 2)))),
             new DeterminedHash(new Double(BitConverter.ToDouble(bytes))),
@@ -42,7 +42,10 @@ public sealed record DeterminedHashTests
             new DeterminedHash(new String(Encoding.Default.GetString(bytes))),
         ];
 
-        Assert.Equal(hashes.Count, hashes.Select(x => Convert.ToHexString(x.ToArray())).Distinct().Count());
+        Assert.Equal(
+            hashes.Count,
+            hashes.Select(x => Convert.ToHexString(x.ToArray())).Distinct().Count()
+        );
     }
 
     [Fact]
@@ -73,23 +76,33 @@ public sealed record DeterminedHashTests
     public void ProduceCorrectAggregatedHash()
     {
         IReadOnlyCollection<IDeterminedHash> values =
-            [new DeterminedHash(new True()), new DeterminedHash(new UShort(100)), new DeterminedHash(new MaxUshort())];
+        [
+            new DeterminedHash(new True()),
+            new DeterminedHash(new UShort(100)),
+            new DeterminedHash(new MaxUshort()),
+        ];
 
         Assert.Equal(
             new AggregatedHash(values),
             new DeterminedHash(values),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
     public void ProduceCorrectBytesHash()
     {
-        IReadOnlyCollection<IEnumerable<byte>> values = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]];
+        IReadOnlyCollection<IEnumerable<byte>> values =
+        [
+            [1, 2, 3, 4, 5],
+            [6, 7, 8, 9, 10],
+        ];
 
         Assert.Equal(
             values.Select(x => new HashFromBytes(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -100,7 +113,8 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromBool(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -111,7 +125,8 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromChar(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -122,7 +137,8 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromDate(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -133,7 +149,8 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromDateTime(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -144,18 +161,22 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromDayOfWeek(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
     public void ProduceCorrectDoubleHash()
     {
-        IEnumerable<INumber<double>> values = new RandomDoubleCollection(new UShort(1000)).ToArray();
+        IEnumerable<INumber<double>> values = new RandomDoubleCollection(
+            new UShort(1000)
+        ).ToArray();
 
         Assert.Equal(
             values.Select(x => new HashFromDouble(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -166,18 +187,23 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromFloat(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
     public void ProduceCorrectGuidHash()
     {
-        IEnumerable<IGuid> values = Enumerable.Range(0, 1000).Select(_ => new Pure.Primitives.Guid.Guid()).ToArray();
+        IEnumerable<IGuid> values = Enumerable
+            .Range(0, 1000)
+            .Select(_ => new Pure.Primitives.Guid.Guid())
+            .ToArray();
 
         Assert.Equal(
             values.Select(x => new HashFromGuid(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -188,18 +214,23 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromInt(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
     public void ProduceCorrectStringHash()
     {
-        IEnumerable<IString> values = new RandomStringCollection(new UShort(1000), new UShort(100)).ToArray();
+        IEnumerable<IString> values = new RandomStringCollection(
+            new UShort(1000),
+            new UShort(100)
+        ).ToArray();
 
         Assert.Equal(
             values.Select(x => new HashFromString(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -210,7 +241,8 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromTime(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
@@ -221,18 +253,22 @@ public sealed record DeterminedHashTests
         Assert.Equal(
             values.Select(x => new HashFromUInt(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]
     public void ProduceCorrectUShortHash()
     {
-        IEnumerable<INumber<ushort>> values = new RandomUShortCollection(new UShort(1000)).ToArray();
+        IEnumerable<INumber<ushort>> values = new RandomUShortCollection(
+            new UShort(1000)
+        ).ToArray();
 
         Assert.Equal(
             values.Select(x => new HashFromUShort(x)),
             values.Select(x => new DeterminedHash(x)),
-            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!)));
+            EqualityComparer<IDeterminedHash>.Create((hash1, hash2) => hash1!.SequenceEqual(hash2!))
+        );
     }
 
     [Fact]

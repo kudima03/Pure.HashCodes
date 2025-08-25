@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <PropertyGroup>
     <PackageId>Pure.HashCodes</PackageId>
     <RootNamespace>Pure.HashCodes</RootNamespace>
@@ -14,13 +12,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kudima03/Pure.HashCodes</PackageProjectUrl>
   </PropertyGroup>
-
   <ItemGroup>
     <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.6" />
   </ItemGroup>
-
 </Project>

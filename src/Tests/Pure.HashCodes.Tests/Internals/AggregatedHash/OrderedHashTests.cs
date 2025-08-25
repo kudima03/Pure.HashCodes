@@ -19,7 +19,7 @@ public sealed record OrderedHashTests
             new DeterminedHash(new RandomUShort()),
             new DeterminedHash(new RandomFloat()),
             new DeterminedHash(new RandomTime()),
-            new DeterminedHash(new RandomDateTime())
+            new DeterminedHash(new RandomDateTime()),
         ];
 
         IEnumerable actualHash = new OrderedHashes(hashCollection);
@@ -40,7 +40,6 @@ public sealed record OrderedHashTests
         Assert.True(equal);
     }
 
-
     [Fact]
     public void ProduceOrder()
     {
@@ -50,11 +49,16 @@ public sealed record OrderedHashTests
             new DeterminedHash(new RandomChar()),
             new DeterminedHash(new RandomUShort()),
             new DeterminedHash(new RandomFloat()),
-            new DeterminedHash(new RandomTime())
+            new DeterminedHash(new RandomTime()),
         ];
 
-        Assert.True(hashes.Order(new DeterminedHashComparer())
-            .Zip(new OrderedHashes(hashes), (x, y) => x.SequenceEqual(y)).Distinct().Single());
+        Assert.True(
+            hashes
+                .Order(new DeterminedHashComparer())
+                .Zip(new OrderedHashes(hashes), (x, y) => x.SequenceEqual(y))
+                .Distinct()
+                .Single()
+        );
     }
 
     [Fact]

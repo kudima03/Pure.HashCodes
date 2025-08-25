@@ -10,7 +10,24 @@ public sealed record HashFromDayOfWeekTests
     public void EnumeratesAsUntyped()
     {
         byte[] typePrefix =
-            [104, 69, 151, 1, 244, 155, 254, 117, 160, 204, 149, 170, 27, 220, 11, 55];
+        [
+            104,
+            69,
+            151,
+            1,
+            244,
+            155,
+            254,
+            117,
+            160,
+            204,
+            149,
+            170,
+            27,
+            220,
+            11,
+            55,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(2));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -38,7 +55,24 @@ public sealed record HashFromDayOfWeekTests
     public void EnumeratesAsTyped()
     {
         byte[] typePrefix =
-            [104, 69, 151, 1, 244, 155, 254, 117, 160, 204, 149, 170, 27, 220, 11, 55];
+        [
+            104,
+            69,
+            151,
+            1,
+            244,
+            155,
+            254,
+            117,
+            160,
+            204,
+            149,
+            170,
+            27,
+            220,
+            11,
+            55,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(3));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -49,7 +83,9 @@ public sealed record HashFromDayOfWeekTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -65,18 +101,40 @@ public sealed record HashFromDayOfWeekTests
     public void ProduceDeterminedHash()
     {
         byte[] typePrefix =
-            [104, 69, 151, 1, 244, 155, 254, 117, 160, 204, 149, 170, 27, 220, 11, 55];
+        [
+            104,
+            69,
+            151,
+            1,
+            244,
+            155,
+            254,
+            117,
+            160,
+            204,
+            149,
+            170,
+            27,
+            220,
+            11,
+            55,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(4));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
-        Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromDayOfWeek(new Thursday()));
+        Assert.Equal(
+            SHA256.HashData(valueBytesWithTypeCode),
+            new HashFromDayOfWeek(new Thursday())
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromDayOfWeek(new Tuesday()).GetHashCode());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromDayOfWeek(new Tuesday()).GetHashCode()
+        );
     }
 
     [Fact]

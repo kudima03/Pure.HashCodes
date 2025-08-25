@@ -10,7 +10,24 @@ public sealed record HashFromGuidTests
     public void EnumeratesAsUntyped()
     {
         byte[] typePrefix =
-            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
+        [
+            255,
+            68,
+            151,
+            1,
+            226,
+            166,
+            124,
+            113,
+            191,
+            194,
+            185,
+            246,
+            222,
+            172,
+            137,
+            178,
+        ];
 
         System.Guid guid = System.Guid.NewGuid();
 
@@ -40,7 +57,24 @@ public sealed record HashFromGuidTests
     public void EnumeratesAsTyped()
     {
         byte[] typePrefix =
-            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
+        [
+            255,
+            68,
+            151,
+            1,
+            226,
+            166,
+            124,
+            113,
+            191,
+            194,
+            185,
+            246,
+            222,
+            172,
+            137,
+            178,
+        ];
 
         System.Guid guid = System.Guid.NewGuid();
 
@@ -53,7 +87,9 @@ public sealed record HashFromGuidTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -69,7 +105,24 @@ public sealed record HashFromGuidTests
     public void ProduceDeterminedHash()
     {
         byte[] typePrefix =
-            [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
+        [
+            255,
+            68,
+            151,
+            1,
+            226,
+            166,
+            124,
+            113,
+            191,
+            194,
+            185,
+            246,
+            222,
+            172,
+            137,
+            178,
+        ];
 
         System.Guid guid = System.Guid.NewGuid();
 

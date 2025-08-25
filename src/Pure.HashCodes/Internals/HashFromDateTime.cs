@@ -6,7 +6,24 @@ namespace Pure.HashCodes;
 internal sealed record HashFromDateTime : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
-        [139, 69, 151, 1, 214, 95, 189, 127, 179, 214, 20, 202, 15, 75, 55, 194];
+    [
+        139,
+        69,
+        151,
+        1,
+        214,
+        95,
+        189,
+        127,
+        179,
+        214,
+        20,
+        202,
+        15,
+        75,
+        55,
+        194,
+    ];
 
     private readonly IDateTime _value;
 
