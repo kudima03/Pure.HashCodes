@@ -60,12 +60,12 @@ public sealed record HashFromBytesTests
         Random random = new Random();
         byte[] bytes = Enumerable.Range(0, 1000).Select(_ => (byte)random.Next(0, 255)).ToArray();
         Assert.True(SHA256.HashData(bytes).SequenceEqual(new HashFromBytes(bytes)));
-    }
-
+    }   
+    
     [Fact]
-    public void ThrowsExceptionOnEmptyCollection()
+    public void ProduceDeterminedCodeOnEmptyCollection()
     {
-        Assert.Throws<ArgumentException>(() => new HashFromBytes([]).ToArray());
+        Assert.Equal("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", Convert.ToHexString(SHA256.HashData([])));
     }
 
     [Fact]
