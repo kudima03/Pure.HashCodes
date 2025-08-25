@@ -10,7 +10,24 @@ public sealed record HashFromBoolTests
     public void EnumeratesAsUntyped()
     {
         byte[] typePrefix =
-            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
+        [
+            249,
+            68,
+            151,
+            1,
+            220,
+            206,
+            245,
+            124,
+            153,
+            201,
+            213,
+            10,
+            215,
+            253,
+            42,
+            156,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -38,7 +55,24 @@ public sealed record HashFromBoolTests
     public void EnumeratesAsTyped()
     {
         byte[] typePrefix =
-            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
+        [
+            249,
+            68,
+            151,
+            1,
+            220,
+            206,
+            245,
+            124,
+            153,
+            201,
+            213,
+            10,
+            215,
+            253,
+            42,
+            156,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -49,7 +83,9 @@ public sealed record HashFromBoolTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -65,7 +101,24 @@ public sealed record HashFromBoolTests
     public void ProduceDeterminedCodeOnTrue()
     {
         byte[] typePrefix =
-            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
+        [
+            249,
+            68,
+            151,
+            1,
+            220,
+            206,
+            245,
+            124,
+            153,
+            201,
+            213,
+            10,
+            215,
+            253,
+            42,
+            156,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -77,7 +130,24 @@ public sealed record HashFromBoolTests
     public void ProduceDeterminedCodeOnFalse()
     {
         byte[] typePrefix =
-            [249, 68, 151, 1, 220, 206, 245, 124, 153, 201, 213, 10, 215, 253, 42, 156];
+        [
+            249,
+            68,
+            151,
+            1,
+            220,
+            206,
+            245,
+            124,
+            153,
+            201,
+            213,
+            10,
+            215,
+            253,
+            42,
+            156,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(false);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();

@@ -15,35 +15,50 @@ public sealed record DeterminedHash : IDeterminedHash
 {
     private readonly IDeterminedHash _hash;
 
-    public DeterminedHash(IBool value) : this(new HashFromBool(value)) { }
+    public DeterminedHash(IBool value)
+        : this(new HashFromBool(value)) { }
 
-    public DeterminedHash(IChar value) : this(new HashFromChar(value)) { }
+    public DeterminedHash(IChar value)
+        : this(new HashFromChar(value)) { }
 
-    public DeterminedHash(ITime value) : this(new HashFromTime(value)) { }
+    public DeterminedHash(ITime value)
+        : this(new HashFromTime(value)) { }
 
-    public DeterminedHash(IDate value) : this(new HashFromDate(value)) { }
+    public DeterminedHash(IDate value)
+        : this(new HashFromDate(value)) { }
 
-    public DeterminedHash(IDayOfWeek value) : this(new HashFromDayOfWeek(value)) { }
+    public DeterminedHash(IDayOfWeek value)
+        : this(new HashFromDayOfWeek(value)) { }
 
-    public DeterminedHash(IDateTime value) : this(new HashFromDateTime(value)) { }
+    public DeterminedHash(IDateTime value)
+        : this(new HashFromDateTime(value)) { }
 
-    public DeterminedHash(INumber<double> value) : this(new HashFromDouble(value)) { }
+    public DeterminedHash(INumber<double> value)
+        : this(new HashFromDouble(value)) { }
 
-    public DeterminedHash(INumber<float> value) : this(new HashFromFloat(value)) { }
+    public DeterminedHash(INumber<float> value)
+        : this(new HashFromFloat(value)) { }
 
-    public DeterminedHash(INumber<int> value) : this(new HashFromInt(value)) { }
+    public DeterminedHash(INumber<int> value)
+        : this(new HashFromInt(value)) { }
 
-    public DeterminedHash(INumber<uint> value) : this(new HashFromUInt(value)) { }
+    public DeterminedHash(INumber<uint> value)
+        : this(new HashFromUInt(value)) { }
 
-    public DeterminedHash(INumber<ushort> value) : this(new HashFromUShort(value)) { }
+    public DeterminedHash(INumber<ushort> value)
+        : this(new HashFromUShort(value)) { }
 
-    public DeterminedHash(IGuid value) : this(new HashFromGuid(value)) { }
+    public DeterminedHash(IGuid value)
+        : this(new HashFromGuid(value)) { }
 
-    public DeterminedHash(IString value) : this(new HashFromString(value)) { }
+    public DeterminedHash(IString value)
+        : this(new HashFromString(value)) { }
 
-    public DeterminedHash(IEnumerable<IDeterminedHash> hashes) : this(new AggregatedHash(hashes)) { }
+    public DeterminedHash(IEnumerable<IDeterminedHash> hashes)
+        : this(new AggregatedHash(hashes)) { }
 
-    public DeterminedHash(IEnumerable<byte> hashBytes) : this(new HashFromBytes(hashBytes)) { }
+    public DeterminedHash(IEnumerable<byte> hashBytes)
+        : this(new HashFromBytes(hashBytes)) { }
 
     private DeterminedHash(IDeterminedHash hash)
     {

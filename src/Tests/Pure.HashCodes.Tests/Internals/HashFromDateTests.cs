@@ -9,8 +9,7 @@ public sealed record HashFromDateTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        byte[] typePrefix =
-            [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -18,7 +17,8 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix.Concat(yearBytes)
+        byte[] concatenated = typePrefix
+            .Concat(yearBytes)
             .Concat(monthBytes)
             .Concat(dayBytes)
             .ToArray();
@@ -45,8 +45,7 @@ public sealed record HashFromDateTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        byte[] typePrefix =
-            [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -54,7 +53,8 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix.Concat(yearBytes)
+        byte[] concatenated = typePrefix
+            .Concat(yearBytes)
             .Concat(monthBytes)
             .Concat(dayBytes)
             .ToArray();
@@ -65,7 +65,9 @@ public sealed record HashFromDateTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -80,8 +82,7 @@ public sealed record HashFromDateTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        byte[] typePrefix =
-            [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -89,7 +90,8 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix.Concat(yearBytes)
+        byte[] concatenated = typePrefix
+            .Concat(yearBytes)
             .Concat(monthBytes)
             .Concat(dayBytes)
             .ToArray();
@@ -100,7 +102,9 @@ public sealed record HashFromDateTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromDate(new CurrentDate()).GetHashCode());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromDate(new CurrentDate()).GetHashCode()
+        );
     }
 
     [Fact]

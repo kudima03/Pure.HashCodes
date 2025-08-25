@@ -6,7 +6,24 @@ namespace Pure.HashCodes;
 internal sealed record HashFromDayOfWeek : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
-        [104, 69, 151, 1, 244, 155, 254, 117, 160, 204, 149, 170, 27, 220, 11, 55];
+    [
+        104,
+        69,
+        151,
+        1,
+        244,
+        155,
+        254,
+        117,
+        160,
+        204,
+        149,
+        170,
+        27,
+        220,
+        11,
+        55,
+    ];
 
     private readonly IDayOfWeek _value;
 
@@ -17,8 +34,9 @@ internal sealed record HashFromDayOfWeek : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(TypePrefix.Concat(BitConverter.GetBytes(_value.DayNumberValue.NumberValue)))
-            .GetEnumerator();
+        return new HashFromBytes(
+            TypePrefix.Concat(BitConverter.GetBytes(_value.DayNumberValue.NumberValue))
+        ).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

@@ -9,8 +9,7 @@ public sealed record HashFromUIntTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        byte[] typePrefix =
-            [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
+        byte[] typePrefix = [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt32(123));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -37,8 +36,7 @@ public sealed record HashFromUIntTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        byte[] typePrefix =
-            [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
+        byte[] typePrefix = [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt32(123));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -49,7 +47,9 @@ public sealed record HashFromUIntTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -64,8 +64,7 @@ public sealed record HashFromUIntTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        byte[] typePrefix =
-            [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
+        byte[] typePrefix = [84, 69, 151, 1, 141, 237, 49, 120, 170, 80, 30, 69, 71, 102, 210, 119];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt32(123));
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();

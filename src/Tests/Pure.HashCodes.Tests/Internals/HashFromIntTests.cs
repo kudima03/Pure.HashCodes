@@ -10,7 +10,24 @@ public sealed record HashFromIntTests
     public void EnumeratesAsUntyped()
     {
         byte[] typePrefix =
-            [99, 69, 151, 1, 197, 101, 86, 125, 182, 6, 168, 251, 101, 41, 230, 254];
+        [
+            99,
+            69,
+            151,
+            1,
+            197,
+            101,
+            86,
+            125,
+            182,
+            6,
+            168,
+            251,
+            101,
+            41,
+            230,
+            254,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(123);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -38,7 +55,24 @@ public sealed record HashFromIntTests
     public void EnumeratesAsTyped()
     {
         byte[] typePrefix =
-            [99, 69, 151, 1, 197, 101, 86, 125, 182, 6, 168, 251, 101, 41, 230, 254];
+        [
+            99,
+            69,
+            151,
+            1,
+            197,
+            101,
+            86,
+            125,
+            182,
+            6,
+            168,
+            251,
+            101,
+            41,
+            230,
+            254,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(123);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -49,7 +83,9 @@ public sealed record HashFromIntTests
 
         bool notEqual = false;
 
-        foreach ((byte element, int index) in actualHash.Select((element, index) => (element, index)))
+        foreach (
+            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+        )
         {
             if (element != expectedHash[index])
             {
@@ -65,7 +101,24 @@ public sealed record HashFromIntTests
     public void ProduceDeterminedHash()
     {
         byte[] typePrefix =
-            [99, 69, 151, 1, 197, 101, 86, 125, 182, 6, 168, 251, 101, 41, 230, 254];
+        [
+            99,
+            69,
+            151,
+            1,
+            197,
+            101,
+            86,
+            125,
+            182,
+            6,
+            168,
+            251,
+            101,
+            41,
+            230,
+            254,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(123);
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();

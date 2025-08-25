@@ -19,7 +19,7 @@ public sealed record AggregatedHashTests
             new DeterminedHash(new RandomUShort()),
             new DeterminedHash(new RandomFloat()),
             new DeterminedHash(new RandomTime()),
-            new DeterminedHash(new RandomDateTime())
+            new DeterminedHash(new RandomDateTime()),
         ];
 
         IEnumerable actualHash = new HashCodes.AggregatedHash(hashCollection);
@@ -45,8 +45,10 @@ public sealed record AggregatedHashTests
     {
         IReadOnlyCollection<IDeterminedHash> hashCollection = [];
 
-        Assert.Equal("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
-            Convert.ToHexString(new HashCodes.AggregatedHash(hashCollection).ToArray()));
+        Assert.Equal(
+            "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+            Convert.ToHexString(new HashCodes.AggregatedHash(hashCollection).ToArray())
+        );
     }
 
     [Fact]
@@ -59,10 +61,14 @@ public sealed record AggregatedHashTests
             new DeterminedHash(new RandomUShort()),
             new DeterminedHash(new RandomFloat()),
             new DeterminedHash(new RandomTime()),
-            new DeterminedHash(new RandomDateTime())
+            new DeterminedHash(new RandomDateTime()),
         ];
 
-        Assert.True(new HashCodes.AggregatedHash(hashCollection).SequenceEqual(new HashCodes.AggregatedHash(hashCollection.Reverse())));
+        Assert.True(
+            new HashCodes.AggregatedHash(hashCollection).SequenceEqual(
+                new HashCodes.AggregatedHash(hashCollection.Reverse())
+            )
+        );
     }
 
     [Fact]

@@ -6,7 +6,8 @@ public sealed record AggregatedHash : IDeterminedHash
 {
     private readonly IEnumerable<IDeterminedHash> _hashes;
 
-    public AggregatedHash(params IDeterminedHash[] hashes) : this(hashes.AsReadOnly()) { }
+    public AggregatedHash(params IDeterminedHash[] hashes)
+        : this(hashes.AsReadOnly()) { }
 
     public AggregatedHash(IEnumerable<IDeterminedHash> hashes)
     {

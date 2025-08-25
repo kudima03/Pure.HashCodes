@@ -6,7 +6,24 @@ namespace Pure.HashCodes;
 internal sealed record HashFromGuid : IDeterminedHash
 {
     private static readonly byte[] TypePrefix =
-        [255, 68, 151, 1, 226, 166, 124, 113, 191, 194, 185, 246, 222, 172, 137, 178];
+    [
+        255,
+        68,
+        151,
+        1,
+        226,
+        166,
+        124,
+        113,
+        191,
+        194,
+        185,
+        246,
+        222,
+        172,
+        137,
+        178,
+    ];
 
     private readonly IGuid _value;
 
