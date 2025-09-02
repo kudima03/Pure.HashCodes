@@ -1,6 +1,6 @@
-﻿using Pure.Primitives.Date;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
+using Pure.Primitives.Date;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -9,7 +9,25 @@ public sealed record HashFromDateTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix =
+        [
+            130,
+            69,
+            151,
+            1,
+            3,
+            139,
+            193,
+            122,
+            182,
+            30,
+            13,
+            221,
+            74,
+            60,
+            6,
+            86,
+        ];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -45,7 +63,25 @@ public sealed record HashFromDateTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix =
+        [
+            130,
+            69,
+            151,
+            1,
+            3,
+            139,
+            193,
+            122,
+            182,
+            30,
+            13,
+            221,
+            74,
+            60,
+            6,
+            86,
+        ];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -66,7 +102,9 @@ public sealed record HashFromDateTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -82,7 +120,25 @@ public sealed record HashFromDateTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        byte[] typePrefix = [130, 69, 151, 1, 3, 139, 193, 122, 182, 30, 13, 221, 74, 60, 6, 86];
+        byte[] typePrefix =
+        [
+            130,
+            69,
+            151,
+            1,
+            3,
+            139,
+            193,
+            122,
+            182,
+            30,
+            13,
+            221,
+            74,
+            60,
+            6,
+            86,
+        ];
 
         DateOnly date = DateOnly.FromDateTime(DateTime.Now);
 
@@ -110,6 +166,8 @@ public sealed record HashFromDateTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromDate(new CurrentDate()).ToString());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromDate(new CurrentDate()).ToString()
+        );
     }
 }

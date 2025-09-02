@@ -34,12 +34,16 @@ public sealed record DeterminedHashComparerTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new DeterminedHashComparer().GetHashCode());
+        Assert.Throws<NotSupportedException>(() =>
+            new DeterminedHashComparer().GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new DeterminedHashComparer().ToString());
+        Assert.Throws<NotSupportedException>(() =>
+            new DeterminedHashComparer().ToString()
+        );
     }
 }

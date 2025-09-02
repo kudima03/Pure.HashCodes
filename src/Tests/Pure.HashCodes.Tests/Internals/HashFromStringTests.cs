@@ -1,6 +1,6 @@
-﻿using Pure.Primitives.String;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
+using Pure.Primitives.String;
 using String = Pure.Primitives.String.String;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -10,7 +10,25 @@ public sealed record HashFromStringTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        byte[] typePrefix = [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
+        byte[] typePrefix =
+        [
+            0,
+            69,
+            151,
+            1,
+            4,
+            52,
+            46,
+            126,
+            159,
+            32,
+            211,
+            174,
+            149,
+            230,
+            168,
+            150,
+        ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -37,7 +55,25 @@ public sealed record HashFromStringTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        byte[] typePrefix = [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
+        byte[] typePrefix =
+        [
+            0,
+            69,
+            151,
+            1,
+            4,
+            52,
+            46,
+            126,
+            159,
+            32,
+            211,
+            174,
+            149,
+            230,
+            168,
+            150,
+        ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
@@ -49,7 +85,9 @@ public sealed record HashFromStringTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -65,7 +103,25 @@ public sealed record HashFromStringTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        byte[] typePrefix = [0, 69, 151, 1, 4, 52, 46, 126, 159, 32, 211, 174, 149, 230, 168, 150];
+        byte[] typePrefix =
+        [
+            0,
+            69,
+            151,
+            1,
+            4,
+            52,
+            46,
+            126,
+            159,
+            32,
+            211,
+            174,
+            149,
+            230,
+            168,
+            150,
+        ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();

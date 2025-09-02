@@ -1,6 +1,6 @@
-﻿using Pure.Primitives.Number;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
+using Pure.Primitives.Number;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -84,7 +84,9 @@ public sealed record HashFromFloatTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])

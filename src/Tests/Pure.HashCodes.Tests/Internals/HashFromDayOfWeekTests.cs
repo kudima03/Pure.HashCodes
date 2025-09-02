@@ -1,6 +1,6 @@
-﻿using Pure.Primitives.DayOfWeek;
-using System.Collections;
+﻿using System.Collections;
 using System.Security.Cryptography;
+using Pure.Primitives.DayOfWeek;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -84,7 +84,9 @@ public sealed record HashFromDayOfWeekTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -140,6 +142,8 @@ public sealed record HashFromDayOfWeekTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromDayOfWeek(new Tuesday()).ToString());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromDayOfWeek(new Tuesday()).ToString()
+        );
     }
 }

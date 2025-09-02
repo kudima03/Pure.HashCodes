@@ -1,5 +1,5 @@
-﻿using Pure.Primitives.Abstractions.Char;
-using System.Collections;
+﻿using System.Collections;
+using Pure.Primitives.Abstractions.Char;
 
 namespace Pure.HashCodes;
 

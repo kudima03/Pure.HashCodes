@@ -16,7 +16,9 @@ public sealed record AggregatedHash : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(new OrderedHashes(_hashes).SelectMany(x => x)).GetEnumerator();
+        return new HashFromBytes(
+            new OrderedHashes(_hashes).SelectMany(x => x)
+        ).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

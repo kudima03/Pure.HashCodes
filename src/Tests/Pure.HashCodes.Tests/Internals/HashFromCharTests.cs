@@ -84,7 +84,9 @@ public sealed record HashFromCharTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -123,18 +125,25 @@ public sealed record HashFromCharTests
         byte[] valueBytes = BitConverter.GetBytes('H');
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
-        Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromChar(new Char('H')));
+        Assert.Equal(
+            SHA256.HashData(valueBytesWithTypeCode),
+            new HashFromChar(new Char('H'))
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromChar(new Char('H')).GetHashCode());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromChar(new Char('H')).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromChar(new Char('H')).ToString());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromChar(new Char('H')).ToString()
+        );
     }
 }

@@ -1,5 +1,5 @@
-﻿using Pure.Primitives.Abstractions.Date;
-using System.Collections;
+﻿using System.Collections;
+using Pure.Primitives.Abstractions.Date;
 
 namespace Pure.HashCodes;
 

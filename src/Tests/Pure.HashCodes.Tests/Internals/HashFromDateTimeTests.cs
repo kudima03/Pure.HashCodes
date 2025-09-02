@@ -1,8 +1,8 @@
-﻿using Pure.Primitives.Date;
+﻿using System.Collections;
+using System.Security.Cryptography;
+using Pure.Primitives.Date;
 using Pure.Primitives.DateTime;
 using Pure.Primitives.Time;
-using System.Collections;
-using System.Security.Cryptography;
 using DateTime = Pure.Primitives.DateTime.DateTime;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -139,7 +139,9 @@ public sealed record HashFromDateTimeTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])

@@ -88,7 +88,9 @@ public sealed record HashFromGuidTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -129,18 +131,25 @@ public sealed record HashFromGuidTests
         byte[] valueBytes = guid.ToByteArray();
         byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
 
-        Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromGuid(new Guid(guid)));
+        Assert.Equal(
+            SHA256.HashData(valueBytesWithTypeCode),
+            new HashFromGuid(new Guid(guid))
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromGuid(new Guid()).GetHashCode());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromGuid(new Guid()).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromGuid(new Guid()).ToString());
+        Assert.Throws<NotSupportedException>(() =>
+            new HashFromGuid(new Guid()).ToString()
+        );
     }
 }
