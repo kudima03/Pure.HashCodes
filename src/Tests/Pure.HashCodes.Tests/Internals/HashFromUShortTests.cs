@@ -1,6 +1,7 @@
-﻿using Pure.Primitives.Number;
 using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
+using Pure.Primitives.Number;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -9,10 +10,28 @@ public sealed record HashFromUShortTests
     [Fact]
     public void EnumeratesAsUntyped()
     {
-        byte[] typePrefix = [75, 69, 151, 1, 198, 16, 204, 119, 135, 66, 52, 31, 39, 64, 88, 38];
+        byte[] typePrefix =
+        [
+            75,
+            69,
+            151,
+            1,
+            198,
+            16,
+            204,
+            119,
+            135,
+            66,
+            52,
+            31,
+            39,
+            64,
+            88,
+            38,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(123));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -36,10 +55,28 @@ public sealed record HashFromUShortTests
     [Fact]
     public void EnumeratesAsTyped()
     {
-        byte[] typePrefix = [75, 69, 151, 1, 198, 16, 204, 119, 135, 66, 52, 31, 39, 64, 88, 38];
+        byte[] typePrefix =
+        [
+            75,
+            69,
+            151,
+            1,
+            198,
+            16,
+            204,
+            119,
+            135,
+            66,
+            52,
+            31,
+            39,
+            64,
+            88,
+            38,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(123));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -48,7 +85,9 @@ public sealed record HashFromUShortTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -64,18 +103,39 @@ public sealed record HashFromUShortTests
     [Fact]
     public void ProduceDeterminedHash()
     {
-        byte[] typePrefix = [75, 69, 151, 1, 198, 16, 204, 119, 135, 66, 52, 31, 39, 64, 88, 38];
+        byte[] typePrefix =
+        [
+            75,
+            69,
+            151,
+            1,
+            198,
+            16,
+            204,
+            119,
+            135,
+            66,
+            52,
+            31,
+            39,
+            64,
+            88,
+            38,
+        ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(123));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
-        Assert.Equal(SHA256.HashData(valueBytesWithTypeCode), new HashFromUShort(new UShort(123)));
+        Assert.Equal(
+            SHA256.HashData(valueBytesWithTypeCode),
+            new HashFromUShort(new UShort(123))
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromUShort(new UShort(123)).GetHashCode()
         );
     }
@@ -83,6 +143,8 @@ public sealed record HashFromUShortTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromUShort(new UShort(123)).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new HashFromUShort(new UShort(123)).ToString()
+        );
     }
 }

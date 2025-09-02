@@ -1,7 +1,7 @@
-﻿using Pure.Primitives.Abstractions.DateTime;
 using System.Collections;
+using Pure.Primitives.Abstractions.DateTime;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromDateTime : IDeterminedHash
 {

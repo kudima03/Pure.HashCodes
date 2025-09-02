@@ -1,6 +1,7 @@
-﻿using Pure.Primitives.Number;
 using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
+using Pure.Primitives.Number;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -30,7 +31,7 @@ public sealed record HashFromFloatTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456F);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -75,7 +76,7 @@ public sealed record HashFromFloatTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456F);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -84,7 +85,9 @@ public sealed record HashFromFloatTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -121,7 +124,7 @@ public sealed record HashFromFloatTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456F);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -132,7 +135,7 @@ public sealed record HashFromFloatTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromFloat(new Float(123.456F)).GetHashCode()
         );
     }
@@ -140,7 +143,7 @@ public sealed record HashFromFloatTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromFloat(new Float(123.456F)).ToString()
         );
     }

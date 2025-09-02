@@ -1,9 +1,9 @@
-﻿using Pure.Primitives.Random.Bool;
+using System.Collections;
+using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;
 using Pure.Primitives.Random.Number;
 using Pure.Primitives.Random.Time;
-using System.Collections;
 
 namespace Pure.HashCodes.Tests.Internals.AggregatedHash;
 
@@ -74,12 +74,16 @@ public sealed record AggregatedHashTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new HashCodes.AggregatedHash([]).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new HashCodes.AggregatedHash([]).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashCodes.AggregatedHash([]).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new HashCodes.AggregatedHash([]).ToString()
+        );
     }
 }

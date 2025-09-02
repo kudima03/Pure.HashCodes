@@ -1,7 +1,7 @@
-﻿using Pure.Primitives.Abstractions.Bool;
 using System.Collections;
+using Pure.Primitives.Abstractions.Bool;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromBool : IDeterminedHash
 {

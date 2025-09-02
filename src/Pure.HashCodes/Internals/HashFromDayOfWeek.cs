@@ -1,7 +1,7 @@
-﻿using Pure.Primitives.Abstractions.DayOfWeek;
 using System.Collections;
+using Pure.Primitives.Abstractions.DayOfWeek;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromDayOfWeek : IDeterminedHash
 {

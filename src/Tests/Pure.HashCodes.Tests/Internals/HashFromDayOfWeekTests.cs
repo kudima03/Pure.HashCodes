@@ -1,6 +1,7 @@
-﻿using Pure.Primitives.DayOfWeek;
 using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
+using Pure.Primitives.DayOfWeek;
 
 namespace Pure.HashCodes.Tests.Internals;
 
@@ -30,7 +31,7 @@ public sealed record HashFromDayOfWeekTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(2));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -75,7 +76,7 @@ public sealed record HashFromDayOfWeekTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(3));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -84,7 +85,9 @@ public sealed record HashFromDayOfWeekTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -121,7 +124,7 @@ public sealed record HashFromDayOfWeekTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(Convert.ToUInt16(4));
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -132,7 +135,7 @@ public sealed record HashFromDayOfWeekTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDayOfWeek(new Tuesday()).GetHashCode()
         );
     }
@@ -140,6 +143,8 @@ public sealed record HashFromDayOfWeekTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new HashFromDayOfWeek(new Tuesday()).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new HashFromDayOfWeek(new Tuesday()).ToString()
+        );
     }
 }

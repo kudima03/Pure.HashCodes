@@ -1,6 +1,6 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals.AggregatedHash;
 
 internal sealed class DeterminedHashComparer : IComparer<IDeterminedHash>
 {
@@ -17,9 +17,13 @@ internal sealed class DeterminedHashComparer : IComparer<IDeterminedHash>
         return firstHashBytes
             .Zip(
                 secondHashBytes,
-                (elementInFirst, elementInSecond) => elementInFirst.CompareTo(elementInSecond)
+                (elementInFirst, elementInSecond) =>
+                    elementInFirst.CompareTo(elementInSecond)
             )
-            .FirstOrDefault(cmp => cmp != 0, firstHashBytes.Count.CompareTo(secondHashBytes.Count));
+            .FirstOrDefault(
+                cmp => cmp != 0,
+                firstHashBytes.Count.CompareTo(secondHashBytes.Count)
+            );
     }
 
     public override int GetHashCode()

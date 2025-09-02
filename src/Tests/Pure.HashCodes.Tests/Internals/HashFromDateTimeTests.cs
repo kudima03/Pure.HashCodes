@@ -1,8 +1,9 @@
-﻿using Pure.Primitives.Date;
-using Pure.Primitives.DateTime;
-using Pure.Primitives.Time;
 using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
+using Pure.Primitives.Date;
+using Pure.Primitives.DateTime;
+using Pure.Primitives.Time;
 using DateTime = Pure.Primitives.DateTime.DateTime;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -44,17 +45,19 @@ public sealed record HashFromDateTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)dateTime.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)dateTime.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. yearBytes,
+            .. monthBytes,
+            .. dayBytes,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -115,17 +118,19 @@ public sealed record HashFromDateTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)dateTime.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)dateTime.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. yearBytes,
+            .. monthBytes,
+            .. dayBytes,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -139,7 +144,9 @@ public sealed record HashFromDateTimeTests
         bool notEqual = false;
 
         foreach (
-            (byte element, int index) in actualHash.Select((element, index) => (element, index))
+            (byte element, int index) in actualHash.Select(
+                (element, index) => (element, index)
+            )
         )
         {
             if (element != expectedHash[index])
@@ -187,17 +194,19 @@ public sealed record HashFromDateTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)dateTime.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)dateTime.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. yearBytes,
+            .. monthBytes,
+            .. dayBytes,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         Assert.Equal(
             SHA256.HashData(concatenated),
@@ -213,7 +222,7 @@ public sealed record HashFromDateTimeTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDateTime(new CurrentDateTime()).GetHashCode()
         );
     }
@@ -221,7 +230,7 @@ public sealed record HashFromDateTimeTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDateTime(new CurrentDateTime()).ToString()
         );
     }

@@ -1,3 +1,3 @@
-﻿namespace Pure.HashCodes;
+namespace Pure.HashCodes;
 
 public interface IDeterminedHash : IEnumerable<byte>;

@@ -1,7 +1,7 @@
-﻿using Pure.Primitives.Abstractions.Guid;
 using System.Collections;
+using Pure.Primitives.Abstractions.Guid;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromGuid : IDeterminedHash
 {
@@ -34,7 +34,9 @@ internal sealed record HashFromGuid : IDeterminedHash
 
     public IEnumerator<byte> GetEnumerator()
     {
-        return new HashFromBytes(TypePrefix.Concat(_value.GuidValue.ToByteArray())).GetEnumerator();
+        return new HashFromBytes(
+            TypePrefix.Concat(_value.GuidValue.ToByteArray())
+        ).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
