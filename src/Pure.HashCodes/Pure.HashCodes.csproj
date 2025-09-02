@@ -16,6 +16,6 @@
     <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.8" />
+    <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.10" />
   </ItemGroup>
 </Project>
