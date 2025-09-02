@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Double = Pure.Primitives.Number.Double;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -30,7 +31,7 @@ public sealed record HashFromDoubleTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456D);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -75,7 +76,7 @@ public sealed record HashFromDoubleTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456D);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -123,7 +124,7 @@ public sealed record HashFromDoubleTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(123.456D);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -134,7 +135,7 @@ public sealed record HashFromDoubleTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDouble(new Double(123.456D)).GetHashCode()
         );
     }
@@ -142,7 +143,7 @@ public sealed record HashFromDoubleTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDouble(new Double(123.456D)).ToString()
         );
     }

@@ -1,4 +1,5 @@
-﻿using Pure.HashCodes.Tests.Fakes;
+using Pure.HashCodes.Internals.AggregatedHash;
+using Pure.HashCodes.Tests.Fakes;
 
 namespace Pure.HashCodes.Tests.Internals.AggregatedHash;
 
@@ -34,7 +35,7 @@ public sealed record DeterminedHashComparerTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new DeterminedHashComparer().GetHashCode()
         );
     }
@@ -42,7 +43,7 @@ public sealed record DeterminedHashComparerTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new DeterminedHashComparer().ToString()
         );
     }

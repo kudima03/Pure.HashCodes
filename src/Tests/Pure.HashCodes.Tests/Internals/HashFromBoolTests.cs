@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.Bool;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -30,7 +31,7 @@ public sealed record HashFromBoolTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -75,7 +76,7 @@ public sealed record HashFromBoolTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -123,7 +124,7 @@ public sealed record HashFromBoolTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(true);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -155,7 +156,7 @@ public sealed record HashFromBoolTests
         ];
 
         byte[] valueBytes = BitConverter.GetBytes(false);
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -166,7 +167,7 @@ public sealed record HashFromBoolTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromBool(new True()).GetHashCode()
         );
     }
@@ -174,7 +175,7 @@ public sealed record HashFromBoolTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromBool(new True()).ToString()
         );
     }

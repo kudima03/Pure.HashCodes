@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.String;
 using String = Pure.Primitives.String.String;
 
@@ -31,7 +32,7 @@ public sealed record HashFromStringTests
         ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -76,7 +77,7 @@ public sealed record HashFromStringTests
         ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -124,7 +125,7 @@ public sealed record HashFromStringTests
         ];
 
         byte[] valueBytes = "Hello, world!!!"u8.ToArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -135,7 +136,7 @@ public sealed record HashFromStringTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromString(new EmptyString()).GetHashCode()
         );
     }
@@ -143,7 +144,7 @@ public sealed record HashFromStringTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromString(new EmptyString()).ToString()
         );
     }

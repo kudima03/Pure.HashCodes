@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System.Collections;
+using Pure.HashCodes.Internals.AggregatedHash;
 using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;
@@ -64,12 +65,14 @@ public sealed record OrderedHashTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new OrderedHashes([]).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new OrderedHashes([]).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new OrderedHashes([]).ToString());
+        _ = Assert.Throws<NotSupportedException>(() => new OrderedHashes([]).ToString());
     }
 }

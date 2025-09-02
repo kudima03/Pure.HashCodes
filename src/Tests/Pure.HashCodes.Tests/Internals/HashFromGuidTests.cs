@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Guid = Pure.Primitives.Guid.Guid;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -32,7 +33,7 @@ public sealed record HashFromGuidTests
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -79,7 +80,7 @@ public sealed record HashFromGuidTests
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         byte[] expectedHash = SHA256.HashData(valueBytesWithTypeCode);
 
@@ -129,7 +130,7 @@ public sealed record HashFromGuidTests
         System.Guid guid = System.Guid.NewGuid();
 
         byte[] valueBytes = guid.ToByteArray();
-        byte[] valueBytesWithTypeCode = typePrefix.Concat(valueBytes).ToArray();
+        byte[] valueBytesWithTypeCode = [.. typePrefix, .. valueBytes];
 
         Assert.Equal(
             SHA256.HashData(valueBytesWithTypeCode),
@@ -140,7 +141,7 @@ public sealed record HashFromGuidTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromGuid(new Guid()).GetHashCode()
         );
     }
@@ -148,7 +149,7 @@ public sealed record HashFromGuidTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromGuid(new Guid()).ToString()
         );
     }

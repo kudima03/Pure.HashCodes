@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;
@@ -74,7 +74,7 @@ public sealed record AggregatedHashTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashCodes.AggregatedHash([]).GetHashCode()
         );
     }
@@ -82,7 +82,7 @@ public sealed record AggregatedHashTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashCodes.AggregatedHash([]).ToString()
         );
     }

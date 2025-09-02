@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.Date;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -35,11 +36,7 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .ToArray();
+        byte[] concatenated = [.. typePrefix, .. yearBytes, .. monthBytes, .. dayBytes];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -89,11 +86,7 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .ToArray();
+        byte[] concatenated = [.. typePrefix, .. yearBytes, .. monthBytes, .. dayBytes];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -146,11 +139,7 @@ public sealed record HashFromDateTests
         byte[] monthBytes = BitConverter.GetBytes((ushort)date.Month);
         byte[] dayBytes = BitConverter.GetBytes((ushort)date.Day);
 
-        byte[] concatenated = typePrefix
-            .Concat(yearBytes)
-            .Concat(monthBytes)
-            .Concat(dayBytes)
-            .ToArray();
+        byte[] concatenated = [.. typePrefix, .. yearBytes, .. monthBytes, .. dayBytes];
 
         Assert.Equal(SHA256.HashData(concatenated), new HashFromDate(new Date(date)));
     }
@@ -158,7 +147,7 @@ public sealed record HashFromDateTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDate(new CurrentDate()).GetHashCode()
         );
     }
@@ -166,7 +155,7 @@ public sealed record HashFromDateTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromDate(new CurrentDate()).ToString()
         );
     }

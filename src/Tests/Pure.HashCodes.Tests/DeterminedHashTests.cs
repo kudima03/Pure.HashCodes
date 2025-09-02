@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Text;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
 using Pure.Primitives.Abstractions.Date;
@@ -44,7 +45,7 @@ public sealed record DeterminedHashTests
 
         Assert.Equal(
             hashes.Count,
-            hashes.Select(x => Convert.ToHexString(x.ToArray())).Distinct().Count()
+            hashes.Select(x => Convert.ToHexString([.. x])).Distinct().Count()
         );
     }
 
@@ -56,7 +57,7 @@ public sealed record DeterminedHashTests
 
         bool equal = true;
 
-        boolHash.MoveNext();
+        _ = boolHash.MoveNext();
 
         foreach (object item in determinedHash)
         {
@@ -66,7 +67,7 @@ public sealed record DeterminedHashTests
                 break;
             }
 
-            boolHash.MoveNext();
+            _ = boolHash.MoveNext();
         }
 
         Assert.True(equal);
@@ -218,10 +219,10 @@ public sealed record DeterminedHashTests
     [Fact]
     public void ProduceCorrectGuidHash()
     {
-        IEnumerable<IGuid> values = Enumerable
-            .Range(0, 1000)
-            .Select(_ => new Pure.Primitives.Guid.Guid())
-            .ToArray();
+        IEnumerable<IGuid> values =
+        [
+            .. Enumerable.Range(0, 1000).Select(_ => new Primitives.Guid.Guid()),
+        ];
 
         Assert.Equal(
             values.Select(x => new HashFromGuid(x)),
@@ -314,7 +315,7 @@ public sealed record DeterminedHashTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new DeterminedHash(new True()).GetHashCode()
         );
     }
@@ -322,7 +323,7 @@ public sealed record DeterminedHashTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new DeterminedHash(new UShort(100)).ToString()
         );
     }

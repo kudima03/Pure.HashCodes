@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.Time;
 
 namespace Pure.HashCodes.Tests.Internals;
@@ -38,14 +39,16 @@ public sealed record HashFromTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)time.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -98,14 +101,16 @@ public sealed record HashFromTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)time.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         byte[] expectedHash = SHA256.HashData(concatenated);
 
@@ -161,14 +166,16 @@ public sealed record HashFromTimeTests
         byte[] microsecondsBytes = BitConverter.GetBytes((ushort)time.Microsecond);
         byte[] nanosecondBytes = BitConverter.GetBytes((ushort)time.Nanosecond);
 
-        byte[] concatenated = typePrefix
-            .Concat(hourBytes)
-            .Concat(minutesBytes)
-            .Concat(secondBytes)
-            .Concat(millisecondsBytes)
-            .Concat(microsecondsBytes)
-            .Concat(nanosecondBytes)
-            .ToArray();
+        byte[] concatenated =
+        [
+            .. typePrefix,
+            .. hourBytes,
+            .. minutesBytes,
+            .. secondBytes,
+            .. millisecondsBytes,
+            .. microsecondsBytes,
+            .. nanosecondBytes,
+        ];
 
         Assert.Equal(SHA256.HashData(concatenated), new HashFromTime(new Time(time)));
     }
@@ -176,7 +183,7 @@ public sealed record HashFromTimeTests
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromTime(new CurrentTime()).GetHashCode()
         );
     }
@@ -184,7 +191,7 @@ public sealed record HashFromTimeTests
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() =>
+        _ = Assert.Throws<NotSupportedException>(() =>
             new HashFromTime(new CurrentTime()).ToString()
         );
     }
