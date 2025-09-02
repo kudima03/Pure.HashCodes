@@ -1,7 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using Pure.Primitives.Abstractions.Number;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromUShort : IDeterminedHash
 {

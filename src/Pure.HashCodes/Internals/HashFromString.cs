@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Text;
 using Pure.Primitives.Abstractions.String;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals;
 
 internal sealed record HashFromString : IDeterminedHash
 {

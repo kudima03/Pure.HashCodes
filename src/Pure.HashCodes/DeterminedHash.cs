@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System.Collections;
+using Pure.HashCodes.Internals;
 using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
 using Pure.Primitives.Abstractions.Date;

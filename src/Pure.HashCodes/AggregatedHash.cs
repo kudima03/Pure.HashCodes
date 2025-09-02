@@ -1,4 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
+using Pure.HashCodes.Internals;
+using Pure.HashCodes.Internals.AggregatedHash;
 
 namespace Pure.HashCodes;
 

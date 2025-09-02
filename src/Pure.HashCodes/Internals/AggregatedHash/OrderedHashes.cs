@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
+using Pure.Internals.HashCodes;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals.AggregatedHash;
 
 internal sealed record OrderedHashes : IEnumerable<IDeterminedHash>
 {
