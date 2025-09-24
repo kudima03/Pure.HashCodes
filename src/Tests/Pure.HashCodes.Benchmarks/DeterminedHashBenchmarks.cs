@@ -133,7 +133,7 @@ public class DeterminedHashBenchmarks
     }
 
     [Benchmark]
-    public static int HashesBytes()
+    public int HashesBytes()
     {
         return new DeterminedHash(Enumerable.Repeat(byte.MaxValue, 100000)).Count();
     }
