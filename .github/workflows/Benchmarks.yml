@@ -14,24 +14,16 @@ jobs:
         working-directory: ./src/Tests/Pure.HashCodes.Benchmarks
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.x.x
-
       - name: Run benchmarks
         run: dotnet run --configuration Release
-
-
-      - name: Check dir
-        run: ls BenchmarkDotNet.Artifacts/results
-
-      
       - name: Compare benchmark results
         uses: rhysd/github-action-benchmark@v1
         with:
           tool: 'benchmarkdotnet'
-          output-file-path: BenchmarkDotNet.Artifacts/results/Pure.HashCodes.Benchmarks.AggregatedHashBenchmarks-report-full.json
+          output-file-path: src/Tests/Pure.HashCodes.Benchmarks/BenchmarkDotNet.Artifacts/results/Pure.HashCodes.Benchmarks.AggregatedHashBenchmarks-report-full.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-alert: true
           alert-threshold: '120%'
