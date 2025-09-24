@@ -17,7 +17,7 @@ jobs:
           dotnet-version: 9.x.x
 
       - name: Run benchmarks
-        run: dotnet run -c Release -p src/Tests/Pure.HashCodes.Benchmarks -- --exporters json --artifacts artifacts
+        run: dotnet run --configuration Release --project src/Tests/Pure.HashCodes.Benchmarks -- --exporters json --artifacts artifacts
 
       - name: Compare benchmark results
         uses: rhysd/github-action-benchmark@v1
