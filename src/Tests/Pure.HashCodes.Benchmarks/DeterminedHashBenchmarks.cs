@@ -1,6 +1,5 @@
 using System.Linq;
 using BenchmarkDotNet.Attributes;
-using Microsoft.VSDiagnostics;
 using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
 using Pure.Primitives.Abstractions.Date;
@@ -23,7 +22,6 @@ using Pure.Primitives.Time;
 namespace Pure.HashCodes.Benchmarks;
 
 [MemoryDiagnoser]
-[CPUUsageDiagnoser]
 public class DeterminedHashBenchmarks
 {
     private readonly IBool _bool = new True();
