@@ -26,7 +26,7 @@ jobs:
         uses: rhysd/github-action-benchmark@v1
         with:
           tool: 'benchmarkdotnet'
-          output-file-path: BenchmarkDotNet.Artifacts/results/*.json
+          output-file-path: BenchmarkDotNet.Artifacts/results/Pure.HashCodes.Benchmarks.AggregatedHashBenchmarks-report-full.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-alert: true
           alert-threshold: '120%'
