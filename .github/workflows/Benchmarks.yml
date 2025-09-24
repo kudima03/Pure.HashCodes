@@ -29,3 +29,4 @@ jobs:
           alert-threshold: '120%'
           comment-always: true
           summary-always: true
+          auto-push: true
