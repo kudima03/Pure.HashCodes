@@ -19,11 +19,16 @@ jobs:
           dotnet-version: 9.x.x
       - name: Run benchmarks
         run: dotnet run --configuration Release
+      - name: Find benchmark result file
+        id: benchfile
+        run: |
+            FILE=$(ls BenchmarkDotNet.Artifacts/results/*.json)
+            echo "file=$FILE" >> $GITHUB_OUTPUT
       - name: Compare benchmark results
         uses: rhysd/github-action-benchmark@v1
         with:
           tool: 'benchmarkdotnet'
-          output-file-path: src/Tests/Pure.HashCodes.Benchmarks/BenchmarkDotNet.Artifacts/results/AllBenchmarks-report-full.json
+          output-file-path: ${{ steps.benchfile.outputs.file }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           fail-on-alert: true
           alert-threshold: '120%'
