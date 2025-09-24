@@ -4,6 +4,7 @@ updates:
   directories:
     - "src/Pure.HashCodes"
     - "src/Tests/Pure.HashCodes.Tests"
+    - "src/Tests/Pure.HashCodes.Benchmarks"
   schedule:
     interval: daily
 - package-ecosystem: "github-actions"
