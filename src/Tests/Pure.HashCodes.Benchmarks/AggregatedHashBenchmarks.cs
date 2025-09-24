@@ -10,9 +10,10 @@ namespace Pure.HashCodes.Benchmarks;
 [CPUUsageDiagnoser]
 public class AggregatedHashBenchmarks
 {
-    private readonly IEnumerable<IDeterminedHash> _hashes = [.. Enumerable
-        .Range(0, 1000)
-        .Select(_ => new FakeDeterminedHash())];
+    private readonly IEnumerable<IDeterminedHash> _hashes =
+    [
+        .. Enumerable.Range(0, 1000).Select(_ => new RandomDeterminedHash()),
+    ];
 
     [Benchmark]
     public int HashesMultiple()
