@@ -1,0 +1,30 @@
+name: Benchmarks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x.x
+
+      - name: Run benchmarks
+        run: dotnet run -c Release -p src/Tests/Pure.HashCodes.Benchmarks -- --exporters json --artifacts artifacts
+
+      - name: Compare benchmark results
+        uses: rhysd/github-action-benchmark@v1
+        with:
+          tool: 'benchmarkdotnet'
+          output-file-path: artifacts/BenchmarkDotNet.Artifacts/results/*.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          fail-on-alert: true
+          alert-threshold: '120%'
+          comment-always: true
