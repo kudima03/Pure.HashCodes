@@ -28,6 +28,6 @@ jobs:
         uses: rhysd/github-action-benchmark@v1
         with:
           tool: 'benchmarkdotnet'
-          output-file-path: BenchmarkDotNet.Artifacts/results/output.json
+          output-file-path: src/Tests/Pure.HashCodes.Benchmarks/BenchmarkDotNet.Artifacts/results/output.json
           external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true
