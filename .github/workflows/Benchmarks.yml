@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  ALLOWED_PERFORMANCE_DEGRADATION: 120%
+  ALLOWED_PERFORMANCE_DEGRADATION: 105%
 
 jobs:
   benchmark:
