@@ -2,9 +2,7 @@ name: Benchmarks
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 env:
   ALLOWED_PERFORMANCE_DEGRADATION: 110%
