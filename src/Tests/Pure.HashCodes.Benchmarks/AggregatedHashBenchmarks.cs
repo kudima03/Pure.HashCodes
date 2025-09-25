@@ -6,7 +6,6 @@ using Pure.HashCodes.Benchmarks.Fakes;
 namespace Pure.HashCodes.Benchmarks;
 
 [MemoryDiagnoser]
-[JsonExporterAttribute.Full]
 public class AggregatedHashBenchmarks
 {
     private readonly IEnumerable<IDeterminedHash> _hashes =

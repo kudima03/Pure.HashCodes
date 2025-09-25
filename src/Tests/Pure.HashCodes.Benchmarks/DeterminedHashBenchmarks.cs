@@ -22,7 +22,6 @@ using Pure.Primitives.Time;
 namespace Pure.HashCodes.Benchmarks;
 
 [MemoryDiagnoser]
-[JsonExporterAttribute.Full]
 public class DeterminedHashBenchmarks
 {
     private readonly IBool _bool = new True();
