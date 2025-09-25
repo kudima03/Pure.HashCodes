@@ -18,7 +18,7 @@ internal sealed class CustomJsonExporter : IExporter
 
     public IEnumerable<string> ExportToFiles(Summary summary, ILogger consoleLogger)
     {
-        const string relativePath = @"BenchmarkDotNet.Artifacts\results\output.json";
+        const string relativePath = "BenchmarkDotNet.Artifacts/results/output.json";
 
         using StreamLogger logger = new StreamLogger(new StreamWriter(relativePath));
         ExportToLog(summary, logger);
