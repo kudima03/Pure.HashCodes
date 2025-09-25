@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 using BenchmarkDotNet.Attributes;
 using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
@@ -52,87 +53,88 @@ public class DeterminedHashBenchmarks
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     );
 
-    [Benchmark]
-    public int HashesBool()
-    {
-        return new DeterminedHash(_bool).Count();
-    }
+    //[Benchmark]
+    //public int HashesBool()
+    //{
+    //    return new DeterminedHash(_bool).Count();
+    //}
 
-    [Benchmark]
-    public int HashesChar()
-    {
-        return new DeterminedHash(_char).Count();
-    }
+    //[Benchmark]
+    //public int HashesChar()
+    //{
+    //    return new DeterminedHash(_char).Count();
+    //}
 
-    [Benchmark]
-    public int HashesTime()
-    {
-        return new DeterminedHash(_time).Count();
-    }
+    //[Benchmark]
+    //public int HashesTime()
+    //{
+    //    return new DeterminedHash(_time).Count();
+    //}
 
-    [Benchmark]
-    public int HashesDate()
-    {
-        return new DeterminedHash(_date).Count();
-    }
+    //[Benchmark]
+    //public int HashesDate()
+    //{
+    //    return new DeterminedHash(_date).Count();
+    //}
 
-    [Benchmark]
-    public int HashesDateTime()
-    {
-        return new DeterminedHash(_dateTime).Count();
-    }
+    //[Benchmark]
+    //public int HashesDateTime()
+    //{
+    //    return new DeterminedHash(_dateTime).Count();
+    //}
 
-    [Benchmark]
-    public int HashesDayOfWeek()
-    {
-        return new DeterminedHash(_dayOfWeek).Count();
-    }
+    //[Benchmark]
+    //public int HashesDayOfWeek()
+    //{
+    //    return new DeterminedHash(_dayOfWeek).Count();
+    //}
 
-    [Benchmark]
-    public int HashesDouble()
-    {
-        return new DeterminedHash(_double).Count();
-    }
+    //[Benchmark]
+    //public int HashesDouble()
+    //{
+    //    return new DeterminedHash(_double).Count();
+    //}
 
     [Benchmark]
     public int HashesFloat()
     {
+        Thread.Sleep(100);
         return new DeterminedHash(_float).Count();
     }
 
-    [Benchmark]
-    public int HashesInt()
-    {
-        return new DeterminedHash(_int).Count();
-    }
+    //[Benchmark]
+    //public int HashesInt()
+    //{
+    //    return new DeterminedHash(_int).Count();
+    //}
 
-    [Benchmark]
-    public int HashesUint()
-    {
-        return new DeterminedHash(_uint).Count();
-    }
+    //[Benchmark]
+    //public int HashesUint()
+    //{
+    //    return new DeterminedHash(_uint).Count();
+    //}
 
-    [Benchmark]
-    public int HashesUshort()
-    {
-        return new DeterminedHash(_ushort).Count();
-    }
+    //[Benchmark]
+    //public int HashesUshort()
+    //{
+    //    return new DeterminedHash(_ushort).Count();
+    //}
 
-    [Benchmark]
-    public int HashesGuid()
-    {
-        return new DeterminedHash(_guid).Count();
-    }
+    //[Benchmark]
+    //public int HashesGuid()
+    //{
+    //    return new DeterminedHash(_guid).Count();
+    //}
 
-    [Benchmark]
-    public int HashesString()
-    {
-        return new DeterminedHash(_string).Count();
-    }
+    //[Benchmark]
+    //public int HashesString()
+    //{
+    //    return new DeterminedHash(_string).Count();
+    //}
 
-    [Benchmark]
-    public int HashesBytes()
-    {
-        return new DeterminedHash(Enumerable.Repeat(byte.MaxValue, 100000)).Count();
-    }
+    //[Benchmark]
+    //public int HashesBytes()
+    //{
+    //    return new DeterminedHash(Enumerable.Repeat(byte.MaxValue, 100000)).Count();
+    //}
 }
