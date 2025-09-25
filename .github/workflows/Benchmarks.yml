@@ -9,7 +9,7 @@ env:
 
 jobs:
   benchmark:
-    runs-on: self-hosted, benchmarks
+    runs-on: [self-hosted, benchmarks]
     defaults:
       run:
         working-directory: ./src/Tests/Pure.HashCodes.Benchmarks
