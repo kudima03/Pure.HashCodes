@@ -1,0 +1,38 @@
+name: Benchmarks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  ALLOWED_PERFORMANCE_DEGRADATION: 110%
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/Tests/Pure.HashCodes.Benchmarks
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x.x
+      - name: Download previous benchmark data
+        uses: actions/cache@v4
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-benchmark
+      - name: Run benchmarks
+        run: dotnet run --configuration Release
+      - name: Compare benchmark results
+        uses: rhysd/github-action-benchmark@v1
+        with:
+          tool: 'benchmarkdotnet'
+          output-file-path: src/Tests/Pure.HashCodes.Benchmarks/BenchmarkDotNet.Artifacts/results/output.json
+          external-data-json-path: ./cache/benchmark-data.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alert-threshold: ${{ env.ALLOWED_PERFORMANCE_DEGRADATION }}
+          fail-on-alert: true

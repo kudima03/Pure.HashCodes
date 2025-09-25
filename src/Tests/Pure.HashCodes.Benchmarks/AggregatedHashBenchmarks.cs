@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
-using Microsoft.VSDiagnostics;
 using Pure.HashCodes.Benchmarks.Fakes;
 
 namespace Pure.HashCodes.Benchmarks;
 
 [MemoryDiagnoser]
-[CPUUsageDiagnoser]
 public class AggregatedHashBenchmarks
 {
     private readonly IEnumerable<IDeterminedHash> _hashes =
