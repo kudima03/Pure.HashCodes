@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace Pure.HashCodes.Internals.AggregatedHash;
 
 internal sealed class DeterminedHashComparer : IComparer<IDeterminedHash>
@@ -11,19 +9,19 @@ internal sealed class DeterminedHashComparer : IComparer<IDeterminedHash>
             return 0;
         }
 
-        IImmutableList<byte> firstHashBytes = first!.ToImmutableArray();
-        IImmutableList<byte> secondHashBytes = second!.ToImmutableArray();
+        using IEnumerator<byte> enum1 = first!.GetEnumerator();
+        using IEnumerator<byte> enum2 = second!.GetEnumerator();
 
-        return firstHashBytes
-            .Zip(
-                secondHashBytes,
-                (elementInFirst, elementInSecond) =>
-                    elementInFirst.CompareTo(elementInSecond)
-            )
-            .FirstOrDefault(
-                cmp => cmp != 0,
-                firstHashBytes.Count.CompareTo(secondHashBytes.Count)
-            );
+        while (enum1.MoveNext() & enum2.MoveNext())
+        {
+            int cmp = enum1.Current.CompareTo(enum2.Current);
+            if (cmp != 0)
+            {
+                return cmp;
+            }
+        }
+
+        return enum1.MoveNext() ? 1 : enum2.MoveNext() ? -1 : 0;
     }
 
     public override int GetHashCode()
