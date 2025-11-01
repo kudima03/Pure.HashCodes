@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using Pure.HashCodes.Abstractions;
+using Pure.HashCodes.Benchmarks.Fakes;
 using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Char;
 using Pure.Primitives.Abstractions.Date;
@@ -51,6 +54,11 @@ public class DeterminedHashBenchmarks
     private readonly IString _string = new String(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     );
+
+    private readonly IEnumerable<IDeterminedHash> _hashes =
+    [
+        .. Enumerable.Range(0, 1000).Select(_ => new RandomDeterminedHash()),
+    ];
 
     [Benchmark]
     public int HashesBool()
@@ -134,5 +142,11 @@ public class DeterminedHashBenchmarks
     public int HashesBytes()
     {
         return new DeterminedHash(Enumerable.Repeat(byte.MaxValue, 100000)).Count();
+    }
+
+    [Benchmark]
+    public int HashesMultiple()
+    {
+        return new DeterminedHash(_hashes).Count();
     }
 }

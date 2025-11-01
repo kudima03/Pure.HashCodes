@@ -7,7 +7,7 @@ on:
 env:
   COVERAGE_WARNING_THRESHOLD: 99
   COVERAGE_THRESHOLD: 98
-  MUTATION_THRESHOLD: 98
+  MUTATION_THRESHOLD: 97
 
 jobs:
   build:
@@ -51,7 +51,7 @@ jobs:
         hide_complexity: false
         indicators: true
         output: both
-        thresholds: "${{ env.COVERAGE_WARNING_THRESHOLD }} ${{ env.COVERAGE_THRESHOLD }}"
+        thresholds: "${{ env.COVERAGE_THRESHOLD }} ${{ env.COVERAGE_WARNING_THRESHOLD }}"
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]'

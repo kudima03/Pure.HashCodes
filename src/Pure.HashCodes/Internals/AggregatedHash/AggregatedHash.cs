@@ -1,11 +1,9 @@
 using System.Collections;
 using Pure.HashCodes.Abstractions;
-using Pure.HashCodes.Internals;
-using Pure.HashCodes.Internals.AggregatedHash;
 
-namespace Pure.HashCodes;
+namespace Pure.HashCodes.Internals.AggregatedHash;
 
-public sealed record AggregatedHash : IDeterminedHash
+internal sealed record AggregatedHash : IDeterminedHash
 {
     private readonly IEnumerable<IDeterminedHash> _hashes;
 

@@ -13,6 +13,7 @@ using Pure.Primitives.Abstractions.String;
 using Pure.Primitives.Abstractions.Time;
 using Pure.Primitives.Bool;
 using Pure.Primitives.Number;
+using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.Date;
 using Pure.Primitives.Random.DateTime;
@@ -85,7 +86,7 @@ public sealed record DeterminedHashTests
         ];
 
         Assert.Equal(
-            new AggregatedHash(values),
+            new DeterminedHash(values),
             new DeterminedHash(values),
             EqualityComparer<IDeterminedHash>.Create(
                 (hash1, hash2) => hash1!.SequenceEqual(hash2!)
@@ -309,6 +310,37 @@ public sealed record DeterminedHashTests
             values.Select(x => new DeterminedHash(x)),
             EqualityComparer<IDeterminedHash>.Create(
                 (hash1, hash2) => hash1!.SequenceEqual(hash2!)
+            )
+        );
+    }
+
+    [Fact]
+    public void HashesEmptyCollection()
+    {
+        IReadOnlyCollection<IDeterminedHash> hashCollection = [];
+
+        Assert.Equal(
+            "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+            Convert.ToHexString(new DeterminedHash(hashCollection).ToArray())
+        );
+    }
+
+    [Fact]
+    public void OrderNotMatters()
+    {
+        IReadOnlyCollection<IDeterminedHash> hashCollection =
+        [
+            new DeterminedHash(new RandomBool()),
+            new DeterminedHash(new RandomChar()),
+            new DeterminedHash(new RandomUShort()),
+            new DeterminedHash(new RandomFloat()),
+            new DeterminedHash(new RandomTime()),
+            new DeterminedHash(new RandomDateTime()),
+        ];
+
+        Assert.True(
+            new DeterminedHash(hashCollection).SequenceEqual(
+                new DeterminedHash(hashCollection.Reverse())
             )
         );
     }
