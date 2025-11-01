@@ -1,4 +1,5 @@
 using System.Collections;
+using Pure.HashCodes.Abstractions;
 using Pure.Primitives.Abstractions.DayOfWeek;
 
 namespace Pure.HashCodes.Internals;

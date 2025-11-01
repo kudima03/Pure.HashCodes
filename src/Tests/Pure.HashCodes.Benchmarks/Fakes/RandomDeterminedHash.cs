@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Pure.HashCodes.Abstractions;
 
 namespace Pure.HashCodes.Benchmarks.Fakes;
 

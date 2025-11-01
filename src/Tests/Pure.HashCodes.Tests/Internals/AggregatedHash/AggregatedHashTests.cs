@@ -1,4 +1,5 @@
 using System.Collections;
+using Pure.HashCodes.Abstractions;
 using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;

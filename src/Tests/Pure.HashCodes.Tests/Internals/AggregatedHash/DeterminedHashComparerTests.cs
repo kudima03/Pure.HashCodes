@@ -1,3 +1,4 @@
+using Pure.HashCodes.Abstractions;
 using Pure.HashCodes.Internals.AggregatedHash;
 using Pure.HashCodes.Tests.Fakes;
 

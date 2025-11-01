@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using Pure.HashCodes.Abstractions;
 using Pure.HashCodes.Benchmarks.Fakes;
 
 namespace Pure.HashCodes.Benchmarks;

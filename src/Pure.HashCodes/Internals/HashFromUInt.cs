@@ -1,4 +1,5 @@
 using System.Collections;
+using Pure.HashCodes.Abstractions;
 using Pure.Primitives.Abstractions.Number;
 
 namespace Pure.HashCodes.Internals;

@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using Pure.HashCodes.Abstractions;
 
 namespace Pure.HashCodes.Internals.AggregatedHash;
 

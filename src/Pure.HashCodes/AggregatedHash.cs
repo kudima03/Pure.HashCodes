@@ -1,4 +1,5 @@
 using System.Collections;
+using Pure.HashCodes.Abstractions;
 using Pure.HashCodes.Internals;
 using Pure.HashCodes.Internals.AggregatedHash;
 
