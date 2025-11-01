@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Security.Cryptography;
+using Pure.HashCodes.Abstractions;
 
 namespace Pure.HashCodes.Internals;
 
