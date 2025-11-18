@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
-    <PackageReference Include="Pure.Primitives" Version="3.4.0" />
+    <PackageReference Include="Pure.Primitives" Version="3.6.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Pure.HashCodes\Pure.HashCodes.csproj" />
