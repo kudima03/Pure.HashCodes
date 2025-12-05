@@ -18,7 +18,7 @@
     <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Pure.HashCodes.Abstractions" Version="0.1.0" />
+    <PackageReference Include="Pure.HashCodes.Abstractions" Version="0.2.0" />
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.3.0" />
     <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.11" />
   </ItemGroup>
