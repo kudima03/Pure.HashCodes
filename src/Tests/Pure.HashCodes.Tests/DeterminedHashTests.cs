@@ -63,7 +63,7 @@ public sealed record DeterminedHashTests
 
         foreach (object item in determinedHash)
         {
-            if (!item!.Equals(boolHash.Current))
+            if (!item.Equals(boolHash.Current))
             {
                 equal = false;
                 break;
