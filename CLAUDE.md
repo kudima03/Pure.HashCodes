@@ -15,6 +15,8 @@ dotnet test --no-build --verbosity normal --logger trx --collect:"XPlat Code Cov
 dotnet pack --configuration Release -p:Version=<version> --output .
 ```
 
+CI additionally passes `-p:AssemblyVersion` (pinned to the major) and `-p:FileVersion`; see `.github/workflows/publish-nuget.yml`.
+
 To run benchmarks (from `./src/Tests/Pure.HashCodes.Benchmarks`):
 
 ```bash
