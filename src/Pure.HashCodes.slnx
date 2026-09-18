@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Pure.HashCodes.Benchmarks/Pure.HashCodes.Benchmarks.csproj" />
+    <Project Path="Tests/Pure.HashCodes.Tests/Pure.HashCodes.Tests.csproj" />
+  </Folder>
+  <Project Path="Pure.HashCodes/Pure.HashCodes.csproj" />
+</Solution>
