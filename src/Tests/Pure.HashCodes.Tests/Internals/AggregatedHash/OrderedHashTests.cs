@@ -1,6 +1,7 @@
 using System.Collections;
 using Pure.HashCodes.Abstractions;
 using Pure.HashCodes.Internals.AggregatedHash;
+using Pure.HashCodes.Tests.Fakes;
 using Pure.Primitives.Random.Bool;
 using Pure.Primitives.Random.Char;
 using Pure.Primitives.Random.DateTime;
@@ -61,6 +62,21 @@ public sealed record OrderedHashTests
                 .Distinct()
                 .Single()
         );
+    }
+
+    [Fact]
+    public void EnumeratesEachHashOnce()
+    {
+        IReadOnlyCollection<EnumerationCountingHash> hashes =
+        [
+            .. Enumerable
+                .Range(0, 64)
+                .Select(i => new EnumerationCountingHash(BitConverter.GetBytes(i))),
+        ];
+
+        _ = new OrderedHashes(hashes).SelectMany(x => x).ToArray();
+
+        Assert.All(hashes, hash => Assert.Equal(1, hash.Enumerations));
     }
 
     [Fact]
