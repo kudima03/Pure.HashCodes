@@ -25,6 +25,14 @@ public sealed record DeterminedHashComparerTests
     }
 
     [Fact]
+    public void CompareCorrectlySameInstance()
+    {
+        IDeterminedHash hash = new FakeHash([1, 2, 3, 4, 5, 6]);
+
+        Assert.Equal(0, new DeterminedHashComparer().Compare(hash, hash));
+    }
+
+    [Fact]
     public void CompareCorrectlyDifferentLength()
     {
         IDeterminedHash hash1 = new FakeHash([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
