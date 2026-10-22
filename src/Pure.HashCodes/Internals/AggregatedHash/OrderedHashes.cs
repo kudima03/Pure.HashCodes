@@ -15,7 +15,7 @@ internal sealed record OrderedHashes : IEnumerable<IDeterminedHash>
     public IEnumerator<IDeterminedHash> GetEnumerator()
     {
         return _hashes
-            .Select(hash => new MaterializedHash(hash.ToArray()))
+            .Select(hash => new MaterializedHash([.. hash]))
             .Order(new DeterminedHashComparer())
             .GetEnumerator();
     }

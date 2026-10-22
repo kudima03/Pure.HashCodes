@@ -3,7 +3,7 @@ using Pure.HashCodes.Abstractions;
 
 namespace Pure.HashCodes.Tests.Fakes;
 
-public sealed class EnumerationCountingHash : IDeterminedHash
+public sealed record EnumerationCountingHash : IDeterminedHash
 {
     private readonly IEnumerable<byte> _bytes;
 

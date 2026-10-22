@@ -122,7 +122,15 @@ public sealed record SequenceHashTests
             new DeterminedHash(new RandomChar())
         );
 
-        Assert.Equal(hash, ((IEnumerable)hash).Cast<byte>());
+        IEnumerable untypedHash = hash;
+        List<byte> untypedBytes = [];
+
+        foreach (object element in untypedHash)
+        {
+            untypedBytes.Add((byte)element);
+        }
+
+        Assert.Equal(hash, untypedBytes);
     }
 
     [Fact]
