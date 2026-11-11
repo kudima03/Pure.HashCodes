@@ -38,13 +38,13 @@ This is a **NuGet library** providing deterministic, byte-enumerable hash codes 
 - `Pure.HashCodes.Abstractions` supplies the `IDeterminedHash` interface — the return type of every hash operation.
 - `Pure.Primitives.Abstractions` supplies the input interfaces (`IBool`, `IChar`, `IDate`, `ITime`, `IDateTime`, `IDayOfWeek`, `INumber<T>`, `IGuid`, `IString`) — `DeterminedHash` constructors accept only these abstractions, never concrete types.
 
-**Multi-targeting:** `net7.0;net8.0;net9.0;net10.0`. All code must remain AOT-compatible (`IsAotCompatible = true`).
+**Multi-targeting:** `net7.0;net8.0;net9.0;net10.0;net11.0`. All code must remain AOT-compatible (`IsAotCompatible = true`).
 
 **Package validation:** `EnablePackageValidation = true` with `PackageValidationBaselineVersion = 2.1.0`. Breaking API changes fail the build.
 
 **Publishing:** triggered by pushing a semver tag (e.g. `2.2.0`). The tag value becomes the `PackageVersion`. Packages are pushed to both GitHub Packages and NuGet.org.
 
-**Tests:** xunit, targeting `net10.0`. Internal types are visible to `Pure.HashCodes.Tests` via `InternalsVisibleTo`. CI enforces ≥ 98% code coverage.
+**Tests:** xunit, targeting `net11.0`. Internal types are visible to `Pure.HashCodes.Tests` via `InternalsVisibleTo`. CI enforces ≥ 98% code coverage.
 
 **Benchmarks:** BenchmarkDotNet, targeting `net10.0` (output executable). CI runs on a self-hosted `benchmarks` runner and fails if any benchmark regresses beyond 110% of the cached baseline.
 
