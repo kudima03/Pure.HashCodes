@@ -16,7 +16,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/kudima03/Pure.HashCodes</PackageProjectUrl>
     <EnablePackageValidation>true</EnablePackageValidation>
-    <PackageValidationBaselineVersion>2.1.0</PackageValidationBaselineVersion>
+    <PackageValidationBaselineVersion>2.2.0</PackageValidationBaselineVersion>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Pure.HashCodes.Tests"></InternalsVisibleTo>
