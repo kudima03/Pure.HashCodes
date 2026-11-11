@@ -6,6 +6,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [2.2.0] — 2026-11-11
+
+### Added
+- Package now multi-targets `net11.0` in addition to `net7.0`, `net8.0`,
+  `net9.0`, and `net10.0`.
+
+### Changed
+- Updated `Pure.HashCodes.Abstractions` to 1.0.0 and
+  `Pure.Primitives.Abstractions` to 4.4.0.
+
 ## [2.1.0] — 2025-12-05
 
 ### Added
