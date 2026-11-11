@@ -40,7 +40,7 @@ This is a **NuGet library** providing deterministic, byte-enumerable hash codes 
 
 **Multi-targeting:** `net7.0;net8.0;net9.0;net10.0;net11.0`. All code must remain AOT-compatible (`IsAotCompatible = true`).
 
-**Package validation:** `EnablePackageValidation = true` with `PackageValidationBaselineVersion = 2.1.0`. Breaking API changes fail the build.
+**Package validation:** `EnablePackageValidation = true` with `PackageValidationBaselineVersion = 2.2.0`. Breaking API changes fail the build.
 
 **Publishing:** triggered by pushing a semver tag (e.g. `2.2.0`). The tag value becomes the `PackageVersion`. Packages are pushed to both GitHub Packages and NuGet.org.
 
